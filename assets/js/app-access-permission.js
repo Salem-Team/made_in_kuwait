@@ -85,16 +85,15 @@ $(function () {
           title: 'Actions',
           orderable: false,
           render: function (data, type, full, meta) {
-            return (
-              '<div class="d-flex align-items-center">' +
-              '<span class="text-nowrap"><button class="btn btn-icon me-1" data-bs-target="#editPermissionModal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="bx bx-edit bx-md"></i></button>' +
-              '<a href="javascript:;" class="btn btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded bx-md"></i></a>' +
-              '<div class="dropdown-menu dropdown-menu-end m-0">' +
-              '<a href="javascript:;"" class="dropdown-item">Edit</a>' +
-              '<a href="javascript:;" class="dropdown-item">Suspend</a>' +
-              '</div>' +
-              '</div>'
-            );
+     return (
+    '<div class="d-flex align-items-center">' +
+    '<span class="text-nowrap">' +
+    '<button class="btn btn-icon me-1" data-bs-target="#editPermissionModal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="bx bx-edit bx-md"></i></button>' +
+    '<button class="btn btn-icon me-1" data-bs-target="#deletePermissionModal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="bx bx-trash bx-md"></i></button>' +
+    '</span>' +
+    '</div>'
+);
+
           }
         }
       ],
@@ -120,7 +119,7 @@ $(function () {
       // Buttons with Dropdown
       buttons: [
         {
-          text: '<i class="bx bx-plus bx-xs me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">Add Permission</span>',
+          text: '<i class="bx bx-plus bx-xs me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">Add Category</span>',
           className: 'add-new btn btn-primary mb-6 mb-md-0',
           attr: {
             'data-bs-toggle': 'modal',

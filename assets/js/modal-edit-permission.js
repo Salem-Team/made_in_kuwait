@@ -1,10 +1,10 @@
 /**
- * Edit Permission Modal JS
+ * Edit Category Modal JS
  */
 
 'use strict';
 
-// Edit permission form validation
+// Edit Category form validation
 document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
     FormValidation.formValidation(document.getElementById('editPermissionForm'), {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         editPermissionName: {
           validators: {
             notEmpty: {
-              message: 'Please enter permission name'
+              message: 'Please enter Category name'
             }
           }
         }

@@ -38,7 +38,13 @@
     <link rel="stylesheet" href="./assets/vendor/css/rtl/core.css" />
     <link rel="stylesheet" href="./assets/vendor/css/rtl/theme-default.css" />
     <link rel="stylesheet" href="./assets/css/demo.css" />
-
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/@form-validation/form-validation.css" />
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="./assets/vendor/libs/typeahead-js/typeahead.css" />
@@ -47,6 +53,7 @@
     <link rel="stylesheet" href="./assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css" />
     <link rel="stylesheet" href="./assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
     <link rel="stylesheet" href="./assets/vendor/libs/flatpickr/flatpickr.css" />
+    
     <!-- Row Group CSS -->
     <link rel="stylesheet" href="./assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css" />
     <!-- Form Validation -->
@@ -857,7 +864,121 @@
 
         
               <!--/ Multilingual -->
-            </div>
+                 <hr class="my-12" />
+            
+                          <!-- Permission Table -->
+              <div class="card">
+                <div class="card-datatable table-responsive">
+                  <table class="datatables-permissions table">
+                    <thead class="border-top">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Img</th>
+                        <th>Created Date</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <!--/ Permission Table -->
+
+              <!-- Modal -->
+              <!-- Add Permission Modal -->
+              <div class="modal fade" id="addPermissionModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-simple">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button
+                        type="button"
+                        class="btn-close btn-pinned"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                      <div class="text-center mb-6">
+                        <h4 class="mb-2">Add New category</h4>
+                        <p>Permissions you may use and assign to your users.</p>
+                      </div>
+                      <form id="addPermissionForm" class="row" onsubmit="return false">
+                        <div class="col-12 mb-4">
+                          <label class="form-label" for="modalPermissionName">category Name</label>
+                          <input
+                            type="text"
+                            id="modalPermissionName"
+                            name="modalPermissionName"
+                            class="form-control"
+                            placeholder="category Name"
+                            autofocus />
+                        </div>
+                    
+                        <div class="col-12 text-center demo-vertical-spacing">
+                          <button type="submit" class="btn btn-primary me-4">Create category</button>
+                          <button
+                            type="reset"
+                            class="btn btn-label-secondary"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                            Discard
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Add category Modal -->
+
+              <!-- Edit category Modal -->
+              <div class="modal fade" id="editPermissionModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-simple">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button
+                        type="button"
+                        class="btn-close btn-pinned"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                      <div class="text-center mb-6">
+                        <h4 class="mb-2">Edit category</h4>
+                        <p>Edit category as per your requirements.</p>
+                      </div>
+                      <div class="alert alert-warning" role="alert">
+                        <span>
+                          <span class="alert-heading mb-1 h5">Warning</span><br />
+                          <span class="mb-0 p"
+                            >By editing the category name, you might break the system permissions functionality.
+                            Please ensure you're absolutely certain before proceeding.</span
+                          >
+                        </span>
+                      </div>
+                      <form id="editPermissionForm" class="row pt-2 row-gap-2 gx-4" onsubmit="return false">
+                        <div class="col-sm-9">
+                          <label class="form-label" for="editPermissionName">category Name</label>
+                          <input
+                            type="text"
+                            id="editPermissionName"
+                            name="editPermissionName"
+                            class="form-control"
+                            placeholder="category Name"
+                            tabindex="-1" />
+                        </div>
+                        <div class="col-sm-3 mb-4">
+                          <label class="form-label invisible d-none d-sm-inline-block">Button</label>
+                          <button type="submit" class="btn btn-primary mt-1 mt-sm-0">Update</button>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-check my-2 ms-2">
+                            <input class="form-check-input" type="checkbox" id="editCorePermission" />
+                            <label class="form-check-label" for="editCorePermission"> Set as core category </label>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Edit category Modal --></div>
             <!-- / Content -->
 
             <!-- Footer -->
@@ -938,6 +1059,9 @@
     <script src="./assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="./assets/js/app-access-permission.js"></script>
+    <script src="./assets/js/modal-add-permission.js"></script>
+    <script src="./assets/js/modal-edit-permission.js"></script>
     <script src="./assets/js/tables-datatables-basic.js"></script>
   </body>
 </html>
