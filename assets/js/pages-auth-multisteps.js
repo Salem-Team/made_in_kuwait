@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
       // Multi Steps form
       const stepsValidationForm = stepsValidation.querySelector('#multiStepsForm');
       // Form steps
-      const stepsValidationFormStep1 = stepsValidationForm.querySelector('#accountDetailsValidation');
-      const stepsValidationFormStep2 = stepsValidationForm.querySelector('#personalInfoValidation');
-      const stepsValidationFormStep3 = stepsValidationForm.querySelector('#billingLinksValidation');
+      const stepsValidationFormStep2 = stepsValidationForm.querySelector('#accountDetailsValidation');
+      const stepsValidationFormStep3 = stepsValidationForm.querySelector('#personalInfoValidation');
+      const stepsValidationFormStep1 = stepsValidationForm.querySelector('#PlansLinksValidation');
       // Multi steps next prev button
       const stepsValidationNext = [].slice.call(stepsValidationForm.querySelectorAll('.btn-next'));
       const stepsValidationPrev = [].slice.call(stepsValidationForm.querySelectorAll('.btn-prev'));
