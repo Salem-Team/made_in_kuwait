@@ -739,7 +739,59 @@
           </nav>
 
           <!-- / Navbar -->
+   <!-- single card  -->
+                <div class="container-xxl flex-grow-1 container-p-y">
+                  <div class="card">
+                    <div class="card-widget-separator-wrapper">
+                      <div class="card-body card-widget-separator">
+                       <div class="row gy-4 gy-sm-1">
+  <div class="col-md-4 col-lg-4"> <!-- تعديل إلى 4 في جميع الشاشات -->
+    <div class="d-flex justify-content-between align-items-center card-widget-1 border-end pb-4 pb-sm-0">
+      <div>
+        <h4 class="mb-0">24</h4>
+        <p class="mb-0">Products</p>
+      </div>
+      <div class="avatar me-sm-6">
+        <span class="avatar-initial rounded bg-label-secondary text-heading">
+          <i class="bx bx-cube bx-lg"></i>
+        </span>
+      </div>
+    </div>
+    <hr class="d-none d-sm-block d-lg-none me-6" />
+  </div>
+  <div class="col-md-4 col-lg-4">
+    <div class="d-flex justify-content-between align-items-center card-widget-2 border-end pb-4 pb-sm-0">
+      <div>
+        <h4 class="mb-0">165</h4>
+        <p class="mb-0">Categories</p>
+      </div>
+      <div class="avatar me-lg-6">
+        <span class="avatar-initial rounded bg-label-secondary text-heading">
+          <i class="bx bx-category-alt bx-lg"></i>
+        </span>
+      </div>
+    </div>
+    <hr class="d-none d-sm-block d-lg-none" />
+  </div>
+  <div class="col-md-4 col-lg-4">
+    <div class="d-flex justify-content-between align-items-center border-end pb-4 pb-sm-0 card-widget-3">
+      <div>
+        <h4 class="mb-0">2.46k</h4>
+        <p class="mb-0">Orders</p>
+      </div>
+      <div class="avatar me-sm-6">
+        <span class="avatar-initial rounded bg-label-secondary text-heading">
+          <i class="bx bx-shopping-bag bx-lg"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
 
+                      </div>
+                    </div>
+                  </div>
+                </div>
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
@@ -777,7 +829,107 @@
                     aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body flex-grow-1">
-                  <form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
+<form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
+<!-- Product Name -->
+<div class="col-sm-12">
+  <label class="form-label" for="basicProductName">Product Name</label>
+  <div class="input-group input-group-merge">
+    <span id="basicProductNameIcon" class="input-group-text"><i class="bx bx-box"></i></span>
+    <input
+      type="text"
+      id="basicProductName"
+      class="form-control"
+      name="basicProductName"
+      placeholder="Enter product name"
+      aria-label="Product Name"
+      aria-describedby="basicProductNameIcon" />
+  </div>
+</div>
+
+
+  <!-- Image -->
+  <div class="col-sm-12">
+    <label class="form-label" for="basicImage">Image</label>
+    <div class="input-group input-group-merge">
+      <span id="basicImageIcon" class="input-group-text"><i class="bx bx-image"></i></span>
+      <input
+        type="file"
+        id="basicImage"
+        name="basicImage"
+        class="form-control"
+        aria-label="Upload Image"
+        aria-describedby="basicImageIcon"
+        accept="image/*" />
+    </div>
+    <div class="form-text">Note: Maximum upload size is 100MB</div>
+  </div>
+
+  <!-- Description -->
+  <div class="col-sm-12">
+    <label class="form-label" for="basicDescription">Description</label>
+    <textarea
+      id="basicDescription"
+      name="basicDescription"
+      class="form-control"
+      placeholder="Enter a description"
+      aria-label="Description"
+      rows="4"></textarea>
+  </div>
+
+  <!-- Category -->
+  <div class="col-sm-12">
+    <label class="form-label" for="basicCategory">Category</label>
+    <select id="basicCategory" name="basicCategory" class="form-select" aria-label="Category">
+      <option selected>Select a category</option>
+      <option value="1">Category 1</option>
+      <option value="2">Category 2</option>
+      <option value="3">Category 3</option>
+    </select>
+  </div>
+
+  <!-- Date -->
+  <div class="col-sm-12">
+    <label class="form-label" for="basicDate">Date</label>
+    <div class="input-group input-group-merge">
+      <span id="basicDateIcon" class="input-group-text"><i class="bx bx-calendar"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        id="basicDate"
+        name="basicDate"
+        aria-describedby="basicDateIcon"
+        placeholder="MM/DD/YYYY"
+        aria-label="Date" />
+    </div>
+  </div>
+
+  <!-- Price -->
+  <div class="col-sm-12">
+    <label class="form-label" for="basicPrice">Price</label>
+    <div class="input-group input-group-merge">
+      <span id="basicPriceIcon" class="input-group-text"><i class="bx bx-dollar"></i></span>
+      <input
+        type="number"
+        id="basicPrice"
+        name="basicPrice"
+        class="form-control"
+        placeholder="1"
+        min="1"
+        aria-label="Price"
+        aria-describedby="basicPriceIcon" />
+    </div>
+    <div class="form-text">Note: Minimum price is 1 KWD</div>
+  </div>
+
+  <!-- Submit and Cancel Buttons -->
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-primary data-submit me-sm-4 me-1">Submit</button>
+    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+  </div>
+</form>
+
+
+                  <form class="add-new-record pt-0 row g-2 hidden" id="form-add-new-record" style="display: none;" onsubmit="return false">
                     <div class="col-sm-12">
                       <label class="form-label" for="basicFullname">Full Name</label>
                       <div class="input-group input-group-merge">
@@ -853,6 +1005,7 @@
                       <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
                     </div>
                   </form>
+                 
                 </div>
               </div>
               <!--/ DataTable with Buttons -->

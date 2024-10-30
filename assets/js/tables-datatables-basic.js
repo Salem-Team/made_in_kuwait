@@ -243,15 +243,19 @@ $(function () {
           searchable: false,
           render: function (data, type, full, meta) {
             return (
-              '<div class="d-inline-block">' +
-              '<a href="javascript:;" class="btn btn-icon dropdown-toggle hide-arrow me-1" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded bx-md"></i></a>' +
-              '<ul class="dropdown-menu dropdown-menu-end m-0">' +
-              '<li><a href="javascript:;" class="dropdown-item">Details</a></li>' +
-              '<div class="dropdown-divider"></div>' +
-              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>' +
-              '</ul>' +
-              '</div>' +
-              '<a href="javascript:;" class="btn btn-icon item-edit"><i class="bx bx-edit bx-md"></i></a>'
+              // '<div class="d-inline-block">' +
+              // '<a href="javascript:;" class="btn btn-icon dropdown-toggle hide-arrow me-1" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded bx-md"></i></a>' +
+              // '<ul class="dropdown-menu dropdown-menu-end m-0">' +
+              // '<li><a href="javascript:;" class="dropdown-item">Details</a></li>' +
+              // '<div class="dropdown-divider"></div>' +
+              // '<li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>' +
+              // '</ul>' +
+              // '</div>' +
+              // '<a href="javascript:;" class="btn btn-icon item-edit"><i class="bx bx-edit bx-md"></i></a>'
+                              '<div class="d-inline-block">' +
+    '<a href="javascript:;" class="btn btn-icon item-edit"><i class="bx bx-edit bx-md"></i></a>' +
+    '<a href="javascript:;" class="  delete-record  "><i class="bx bx-trash bx-md"></i></a>' +
+    '</div>'
             );
           }
         }
