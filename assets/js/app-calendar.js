@@ -16,7 +16,7 @@ let direction = 'ltr';
 if (isRtl) {
   direction = 'rtl';
 }
-
+ 
 document.addEventListener('DOMContentLoaded', function () {
   (function () {
     const calendarEl = document.getElementById('calendar'),
@@ -58,27 +58,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //! TODO: Update Event label and guest code to JS once select removes jQuery dependency
     // Event Label (select2)
-    if (eventLabel.length) {
-      function renderBadges(option) {
-        if (!option.id) {
-          return option.text;
-        }
-        var $badge =
-          "<span class='badge badge-dot bg-" + $(option.element).data('label') + " me-2'> " + '</span>' + option.text;
+if (eventLabel.length) {
+  // بدلًا من select2، نقوم بتهيئة input عادي مع placeholder فقط
+  eventLabel.wrap('<div class="position-relative"></div>');
 
-        return $badge;
-      }
-      eventLabel.wrap('<div class="position-relative"></div>').select2({
-        placeholder: 'Select value',
-        dropdownParent: eventLabel.parent(),
-        templateResult: renderBadges,
-        templateSelection: renderBadges,
-        minimumResultsForSearch: -1,
-        escapeMarkup: function (es) {
-          return es;
-        }
-      });
-    }
+  // نعين placeholder
+  eventLabel.attr("placeholder", "Enter value");
+
+  // حذف دالة renderBadges وتعطيل select2
+}
+
 
     // Event Guests (select2)
     if (eventGuests.length) {
@@ -156,11 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
       bsAddEventSidebar.show();
       // For update event set offcanvas title text: Update Event
       if (offcanvasTitle) {
-        offcanvasTitle.innerHTML = 'Update Event';
+        offcanvasTitle.innerHTML = 'Event Description';
       }
-      btnSubmit.innerHTML = 'Update';
-      btnSubmit.classList.add('btn-update-event');
-      btnSubmit.classList.remove('btn-add-event');
       btnDeleteEvent.classList.remove('d-none');
 
       eventTitle.value = eventToUpdate.title;
@@ -250,57 +236,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Init FullCalendar
     // ------------------------------------------------
-    let calendar = new Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      events: fetchEvents,
-      plugins: [dayGridPlugin, interactionPlugin, listPlugin, timegridPlugin],
-      editable: true,
-      dragScroll: true,
-      dayMaxEvents: 2,
-      eventResizableFromStart: true,
-      customButtons: {
-        sidebarToggle: {
-          text: 'Sidebar'
-        }
-      },
-      headerToolbar: {
-        start: 'sidebarToggle, prev,next, title',
-        end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-      },
-      direction: direction,
-      initialDate: new Date(),
-      navLinks: true, // can click day/week names to navigate views
-      eventClassNames: function ({ event: calendarEvent }) {
-        const colorName = calendarsColor[calendarEvent._def.extendedProps.calendar];
-        // Background Color
-        return ['fc-event-' + colorName];
-      },
-      dateClick: function (info) {
-        let date = moment(info.date).format('YYYY-MM-DD');
-        resetValues();
-        bsAddEventSidebar.show();
+let calendar = new Calendar(calendarEl, {
+  initialView: 'dayGridMonth',
+  events: fetchEvents,
+  plugins: [dayGridPlugin, interactionPlugin, listPlugin, timegridPlugin],
+  editable: false,  // تعطيل خاصية السحب والإفلات
+  dragScroll: true,
+  dayMaxEvents: 2,
+  eventResizableFromStart: true,
+  customButtons: {
+    sidebarToggle: {
+      text: 'Sidebar'
+    }
+  },
+  headerToolbar: {
+    start: 'sidebarToggle, prev,next, title',
+    end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+  },
+  direction: direction,
+  initialDate: new Date(),
+  navLinks: true,
+  eventClassNames: function ({ event: calendarEvent }) {
+    const colorName = calendarsColor[calendarEvent._def.extendedProps.calendar];
+    return ['fc-event-' + colorName];
+  },
+  // قم بتعطيل dateClick لتعطيل نافذة Add Event عند النقر على الأجزاء الفارغة
+  // dateClick: function (info) {
+  //   // لا يوجد كود هنا - فقط احذف أو قم بتعليق dateClick
+  // },
 
-        // For new event set offcanvas title text: Add Event
-        if (offcanvasTitle) {
-          offcanvasTitle.innerHTML = 'Add Event';
-        }
-        btnSubmit.innerHTML = 'Add';
-        btnSubmit.classList.remove('btn-update-event');
-        btnSubmit.classList.add('btn-add-event');
-        btnDeleteEvent.classList.add('d-none');
-        eventStartDate.value = date;
-        eventEndDate.value = date;
-      },
-      eventClick: function (info) {
-        eventClick(info);
-      },
-      datesSet: function () {
-        modifyToggler();
-      },
-      viewDidMount: function () {
-        modifyToggler();
-      }
-    });
+  // الإبقاء على eventClick للتعامل مع التحديث
+  eventClick: function (info) {
+    eventClick(info);  // هنا يتم استدعاء نافذة التحديث Update Event عند النقر على حدث
+  },
+  datesSet: function () {
+    modifyToggler();
+  },
+  viewDidMount: function () {
+    modifyToggler();
+  }
+});
 
     // Render calendar
     calendar.render();

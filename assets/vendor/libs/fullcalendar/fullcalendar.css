@@ -133,6 +133,7 @@ html:not([dir=rtl]) .fc .fc-view-harness .fc-scrollgrid-section-header > * {
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   border: 0;
+
 }
 .fc .fc-view-harness .fc-event .fc-event-title {
   font-weight: 500;

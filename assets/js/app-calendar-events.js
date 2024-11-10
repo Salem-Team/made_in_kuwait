@@ -16,7 +16,7 @@ window.events = [
     id: 1,
     url: '',
     title: 'Design Review',
-    start: date,
+    start: date, 
     end: nextDay,
     allDay: false,
     extendedProps: {
