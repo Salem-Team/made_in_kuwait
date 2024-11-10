@@ -7,70 +7,59 @@
 let fv, offCanvasEl;
 document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
-    const formAddNewRecord = document.getElementById('form-add-new-product');
+    const formAddNewRecord = document.getElementById('form-add-new-record');
 
     setTimeout(() => {
       const newRecord = document.querySelector('.create-new'),
-        offCanvasElement = document.querySelector('#add-new-product');
+        offCanvasElement = document.querySelector('#add-new-record');
 
-      // To open offCanvas, to add new product
+      // To open offCanvas, to add new record
       if (newRecord) {
         newRecord.addEventListener('click', function () {
           offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
           // Empty fields on offCanvas open
-          (offCanvasElement.querySelector('#basicProductName').value = ''),
-            (offCanvasElement.querySelector('#basicImage').value = ''),
-            (offCanvasElement.querySelector('#basicDescription').value = ''),
-            (offCanvasElement.querySelector('#basicCategory').value = ''),
-            (offCanvasElement.querySelector('#basicDate').value = ''),
-            (offCanvasElement.querySelector('#basicPrice').value = '');
+          (offCanvasElement.querySelector('.dt-full-name').value = ''),
+            (offCanvasElement.querySelector('.dt-post').value = ''),
+            (offCanvasElement.querySelector('.dt-email').value = ''),
+            (offCanvasElement.querySelector('.dt-date').value = ''),
+            (offCanvasElement.querySelector('.dt-salary').value = '');
           // Open offCanvas with form
           offCanvasEl.show();
         });
       }
     }, 200);
 
-    // Form validation for Add new product
+    // Form validation for Add new record
     fv = FormValidation.formValidation(formAddNewRecord, {
       fields: {
-        basicProductName: {
+        basicFullname: {
           validators: {
             notEmpty: {
-              message: 'The product name is required'
+              message: 'The name is required'
             }
           }
         },
-        basicImage: {
+        basicPost: {
           validators: {
             notEmpty: {
-              message: 'Image is required'
+              message: 'Post field is required'
+            }
+          }
+        },
+        basicEmail: {
+          validators: {
+            notEmpty: {
+              message: 'The Email is required'
             },
-            file: {
-              extension: 'jpeg,jpg,png',
-              type: 'image/jpeg,image/png',
-              maxSize: 104857600, // 100MB in bytes
-              message: 'Please upload a valid image file (JPEG, JPG, PNG) under 100MB'
-            }
-          }
-        },
-        basicDescription: {
-          validators: {
-            notEmpty: {
-              message: 'Description is required'
-            }
-          }
-        },
-        basicCategory: {
-          validators: {
-            notEmpty: {
-              message: 'Please select a category'
+            emailAddress: {
+              message: 'The value is not a valid email address'
             }
           }
         },
         basicDate: {
           validators: {
             notEmpty: {
-              message: 'Date is required'
+              message: 'Joining Date is required'
             },
             date: {
               format: 'MM/DD/YYYY',
@@ -78,18 +67,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
             }
           }
         },
-        basicPrice: {
+        basicSalary: {
           validators: {
             notEmpty: {
-              message: 'Price is required'
-            },
-            numeric: {
-              message: 'Please enter a valid price'
-            },
-            greaterThan: {
-              inclusive: false,
-              value: 1,
-              message: 'The price must be greater than 1'
+              message: 'Basic Salary is required'
             }
           }
         }
@@ -97,10 +78,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap5: new FormValidation.plugins.Bootstrap5({
+          // Use this for enabling/changing valid/invalid class
+          // eleInvalidClass: '',
           eleValidClass: '',
           rowSelector: '.col-sm-12'
         }),
         submitButton: new FormValidation.plugins.SubmitButton(),
+        // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
         autoFocus: new FormValidation.plugins.AutoFocus()
       },
       init: instance => {
@@ -118,7 +102,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
     if (flatpickrDate) {
       flatpickrDate.flatpickr({
         enableTime: false,
+        // See https://flatpickr.js.org/formatting/
         dateFormat: 'm/d/Y',
+        // After selecting a date, we need to revalidate the field
         onChange: function () {
           fv.revalidateField('basicDate');
         }
@@ -126,8 +112,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
     }
   })();
 });
-
-
 
 // datatable (jquery)
 $(function () {
@@ -200,7 +184,7 @@ $(function () {
             } else {
               // For Avatar badge
               var stateNum = Math.floor(Math.random() * 6);
-              var states = [12, 34, 19, 2, 54, 23, 8];
+              var states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'];
               var $state = states[stateNum],
                 $name = full['full_name'],
                 $initials = $name.match(/\b\w/g) || [];
@@ -237,11 +221,11 @@ $(function () {
           render: function (data, type, full, meta) {
             var $status_number = full['status'];
             var $status = {
-              1: { title: 10, class: 'bg-label-primary' },
-              2: { title: 45, class: ' bg-label-success' },
-              3: { title: 2, class: ' bg-label-danger' },
-              4: { title: 12, class: ' bg-label-warning' },
-              5: { title: 5, class: ' bg-label-info' }
+              1: { title: 'Current', class: 'bg-label-primary' },
+              2: { title: 'Professional', class: ' bg-label-success' },
+              3: { title: 'Rejected', class: ' bg-label-danger' },
+              4: { title: 'Resigned', class: ' bg-label-warning' },
+              5: { title: 'Applied', class: ' bg-label-info' }
             };
             if (typeof $status[$status_number] === 'undefined') {
               return data;
@@ -259,11 +243,16 @@ $(function () {
           searchable: false,
           render: function (data, type, full, meta) {
             return (
-
-                              '<div class="d-inline-block">' +
-    '<a href="javascript:;" class="btn btn-icon item-edit edit-product"><i class="bx bx-edit bx-md"></i></a>' +
-    '<a href="javascript:;" class="  delete-product  "><i class="bx bx-trash bx-md"></i></a>' +
-    '</div>'
+              '<div class="d-inline-block">' +
+              '<a href="javascript:;" class="btn btn-icon dropdown-toggle hide-arrow me-1" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded bx-md"></i></a>' +
+              '<ul class="dropdown-menu dropdown-menu-end m-0">' +
+              '<li><a href="javascript:;" class="dropdown-item">Details</a></li>' +
+              '<li><a href="javascript:;" class="dropdown-item">Archive</a></li>' +
+              '<div class="dropdown-divider"></div>' +
+              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>' +
+              '</ul>' +
+              '</div>' +
+              '<a href="javascript:;" class="btn btn-icon item-edit"><i class="bx bx-edit bx-md"></i></a>'
             );
           }
         }
@@ -420,7 +409,7 @@ $(function () {
           ]
         },
         {
-          text: '<i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New Product</span>',
+          text: '<i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New Record</span>',
           className: 'create-new btn btn-primary'
         }
       ],
@@ -457,119 +446,45 @@ $(function () {
         }
       }
     });
-    $('div.head-label').html('<h5 class="card-title mb-0">My Products</h5>');
+    $('div.head-label').html('<h5 class="card-title mb-0">DataTable with Buttons</h5>');
     // To remove default btn-secondary in export buttons
     $('.dt-buttons > .btn-group > button').removeClass('btn-secondary');
   }
 
-  // // Add New product
-  // // ? Remove/Update this code as per your requirements
-  // var count = 101;
-  // // On form submit, if form is valid
-  // fv.on('core.form.valid', function () {
-  //   var $new_name = $('.add-new-product .dt-full-name').val(),
-  //     $new_post = $('.add-new-product .dt-post').val(),
-  //     $new_email = $('.add-new-product .dt-email').val(),
-  //     $new_date = $('.add-new-product .dt-date').val(),
-  //     $new_salary = $('.add-new-product .dt-salary').val();
+  // Add New record
+  // ? Remove/Update this code as per your requirements
+  var count = 101;
+  // On form submit, if form is valid
+  fv.on('core.form.valid', function () {
+    var $new_name = $('.add-new-record .dt-full-name').val(),
+      $new_post = $('.add-new-record .dt-post').val(),
+      $new_email = $('.add-new-record .dt-email').val(),
+      $new_date = $('.add-new-record .dt-date').val(),
+      $new_salary = $('.add-new-record .dt-salary').val();
 
-  //   if ($new_name != '') {
-  //     dt_basic.row
-  //       .add({
-  //         id: count,
-  //         full_name: $new_name,
-  //         post: $new_post,
-  //         email: $new_email,
-  //         start_date: $new_date,
-  //         salary: '$' + $new_salary,
-  //         status: 5
-  //       })
-  //       .draw();
-  //     count++;
+    if ($new_name != '') {
+      dt_basic.row
+        .add({
+          id: count,
+          full_name: $new_name,
+          post: $new_post,
+          email: $new_email,
+          start_date: $new_date,
+          salary: '$' + $new_salary,
+          status: 5
+        })
+        .draw();
+      count++;
 
-  //     // Hide offcanvas using javascript method
-  //     offCanvasEl.hide();
-  //   }
-  // });
-
-  // // Delete product
-  // $('.datatables-basic tbody').on('click', '.delete-product', function () {
-  //   dt_basic.row($(this).parents('tr')).remove().draw();
-  // });
-  // // edit- product
-  // $('.datatables-basic tbody').on('click', '.edit-product', function () {
-   
-  // });
-
-// Add New product
-// ? Remove/Update this code as per your requirements
-var count = 101;
-
-// On form submit, if form is valid
-fv.on('core.form.valid', function () {
-  var $new_name = $('.add-new-product-1 .dt-full-name').val(),
-      $new_post = $('.add-new-product-1 .dt-post').val(),
-      $new_email = $('.add-new-product-1 .dt-email').val(),
-      $new_date = $('.add-new-product-1 .dt-date').val(),
-      $new_salary = $('.add-new-product-1 .dt-salary').val();
-
-  if ($new_name != '') {
-    dt_basic.row
-      .add({
-        id: count,
-        full_name: $new_name,
-        post: $new_post,
-        email: $new_email,
-        start_date: $new_date,
-        salary: '$' + $new_salary,
-        status: 5
-      })
-      .draw();
-    count++;
-
-    // Hide offcanvas using javascript method
-    offCanvasEl.hide();
-  }
-});
-
-// Delete product
-$('.datatables-basic tbody').on('click', '.delete-product', function () {
-  dt_basic.row($(this).parents('tr')).remove().draw();
-});
-
-// Edit product
-// Edit product
-$('.datatables-basic tbody').on('click', '.edit-product', function () {
-  // Get the row data for the clicked row
-  var rowData = dt_basic.row($(this).parents('tr')).data();
-
-  // Check if rowData is defined
-  if (rowData) {
-    // Log rowData to check its properties
-    console.log(rowData); // تحقق من الهيكل الكامل للبيانات
-
-    // Fill the inputs in the offcanvas with the row data
-    $('#basicProductName').val(rowData.full_name || ''); // Assuming full_name is the product name
-    $('#basicDescription').val(rowData.description || ''); // Assuming you have a description field in your data
-    $('#basicCategory').val(rowData.category || ''); // Assuming you have category field in your data
-    $('#basicDate').val(rowData.start_date || ''); // Assuming start_date is the date
-
-    // Check if price exists and remove '$' before setting the value
-    if (rowData.salary) { // Assuming salary is the price
-      $('#basicPrice').val(rowData.salary.replace('$', '')); // Assuming price is stored with '$' symbol
-    } else {
-      $('#basicPrice').val(''); // Set to empty if price is not defined
+      // Hide offcanvas using javascript method
+      offCanvasEl.hide();
     }
+  });
 
-    // Open the offcanvas to edit the product
-    offCanvasEl = new bootstrap.Offcanvas(document.getElementById('add-new-product-1'));
-    offCanvasEl.show();
-  } else {
-    console.error('No row data found for the selected row.');
-  }
-});
-
-  
+  // Delete Record
+  $('.datatables-basic tbody').on('click', '.delete-record', function () {
+    dt_basic.row($(this).parents('tr')).remove().draw();
+  });
 
   // Complex Header DataTable
   // --------------------------------------------------------------------
@@ -618,8 +533,9 @@ $('.datatables-basic tbody').on('click', '.edit-product', function () {
               '<a href="javascript:;" class="btn btn-icon dropdown-toggle hide-arrow me-1" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded bx-md"></i></a>' +
               '<div class="dropdown-menu dropdown-menu-end m-0">' +
               '<a href="javascript:;" class="dropdown-item">Details</a>' +
+              '<a href="javascript:;" class="dropdown-item">Archive</a>' +
               '<div class="dropdown-divider"></div>' +
-              '<a href="javascript:;" class="dropdown-item text-danger delete-product">Delete</a>' +
+              '<a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a>' +
               '</div>' +
               '</div>' +
               '<a href="javascript:;" class="btn btn-icon item-edit"><i class="bx bx-edit bx-md"></i></a>'
@@ -701,8 +617,9 @@ $('.datatables-basic tbody').on('click', '.edit-product', function () {
               '<a href="javascript:;" class="btn btn-icon dropdown-toggle hide-arrow me-1" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded bx-sm"></i></a>' +
               '<div class="dropdown-menu dropdown-menu-end m-0">' +
               '<a href="javascript:;" class="dropdown-item">Details</a>' +
+              '<a href="javascript:;" class="dropdown-item">Archive</a>' +
               '<div class="dropdown-divider"></div>' +
-              '<a href="javascript:;" class="dropdown-item text-danger delete-product">Delete</a>' +
+              '<a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a>' +
               '</div>' +
               '</div>' +
               '<a href="javascript:;" class="btn btn-icon item-edit"><i class="bx bx-edit bx-sm"></i></a>'
@@ -783,7 +700,122 @@ $('.datatables-basic tbody').on('click', '.edit-product', function () {
     });
   }
 
-  
+  // Multilingual DataTable
+  // --------------------------------------------------------------------
+
+  var lang = 'German';
+  if (dt_multilingual_table.length) {
+    var table_language = dt_multilingual_table.DataTable({
+      ajax: assetsPath + 'json/table-datatable.json',
+      columns: [
+        { data: '' },
+        { data: 'full_name' },
+        { data: 'post' },
+        { data: 'email' },
+        { data: 'start_date' },
+        { data: 'salary' },
+        { data: 'status' },
+        { data: '' }
+      ],
+      columnDefs: [
+        {
+          // For Responsive
+          className: 'control',
+          orderable: false,
+          targets: 0,
+          searchable: false,
+          render: function (data, type, full, meta) {
+            return '';
+          }
+        },
+        {
+          // Label
+          targets: -2,
+          render: function (data, type, full, meta) {
+            var $status_number = full['status'];
+            var $status = {
+              1: { title: 'Current', class: 'bg-label-primary' },
+              2: { title: 'Professional', class: ' bg-label-success' },
+              3: { title: 'Rejected', class: ' bg-label-danger' },
+              4: { title: 'Resigned', class: ' bg-label-warning' },
+              5: { title: 'Applied', class: ' bg-label-info' }
+            };
+            if (typeof $status[$status_number] === 'undefined') {
+              return data;
+            }
+            return (
+              '<span class="badge ' + $status[$status_number].class + '">' + $status[$status_number].title + '</span>'
+            );
+          }
+        },
+        {
+          // Actions
+          targets: -1,
+          title: 'Actions',
+          orderable: false,
+          searchable: false,
+          render: function (data, type, full, meta) {
+            return (
+              '<div class="d-inline-block">' +
+              '<a href="javascript:;" class="btn btn-icon dropdown-toggle hide-arrow me-1" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded bx-sm"></i></a>' +
+              '<div class="dropdown-menu dropdown-menu-end m-0">' +
+              '<a href="javascript:;" class="dropdown-item">Details</a>' +
+              '<a href="javascript:;" class="dropdown-item">Archive</a>' +
+              '<div class="dropdown-divider"></div>' +
+              '<a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a>' +
+              '</div>' +
+              '</div>' +
+              '<a href="javascript:;" class="btn btn-icon item-edit"><i class="bx bx-edit bx-sm"></i></a>'
+            );
+          }
+        }
+      ],
+      language: {
+        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/' + lang + '.json',
+        paginate: {
+          next: '<i class="bx bx-chevron-right bx-18px"></i>',
+          previous: '<i class="bx bx-chevron-left bx-18px"></i>'
+        }
+      },
+      order: [[2, 'desc']],
+      displayLength: 7,
+      dom: '<"row"<"col-sm-12 col-md-6 ps-md-4"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end mt-n6 mt-md-0"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      lengthMenu: [7, 10, 25, 50, 75, 100],
+      responsive: {
+        details: {
+          display: $.fn.dataTable.Responsive.display.modal({
+            header: function (row) {
+              var data = row.data();
+              return 'Details of ' + data['full_name'];
+            }
+          }),
+          type: 'column',
+          renderer: function (api, rowIdx, columns) {
+            var data = $.map(columns, function (col, i) {
+              return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
+                ? '<tr data-dt-row="' +
+                    col.rowIndex +
+                    '" data-dt-column="' +
+                    col.columnIndex +
+                    '">' +
+                    '<td>' +
+                    col.title +
+                    ':' +
+                    '</td> ' +
+                    '<td>' +
+                    col.data +
+                    '</td>' +
+                    '</tr>'
+                : '';
+            }).join('');
+
+            return data ? $('<table class="table"/><tbody />').append(data) : false;
+          }
+        }
+      }
+    });
+  }
+
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization
   setTimeout(() => {
