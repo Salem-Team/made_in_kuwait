@@ -2,11 +2,11 @@
 
 <html
   lang="en"
-  class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+  class="light-style layout-menu-fixed layout-compact"
   dir="ltr"
   data-theme="theme-default"
   data-assets-path="./assets/"
-  data-template="vertical-menu-template"
+  data-template="horizontal-menu-template"
   data-style="light">
   <head>
     <meta charset="utf-8" />
@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Demo : Chat - Apps | sneat - Bootstrap Dashboard PRO</title>
+    <title>Demo : Roles - Apps | sneat - Bootstrap Dashboard PRO</title>
 
     <meta name="description" content="" />
 
@@ -41,11 +41,11 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="./assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="./assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/@form-validation/form-validation.css" />
 
     <!-- Page CSS -->
-
-    <link rel="stylesheet" href="./assets/vendor/css/pages/app-chat.css" />
 
     <!-- Helpers -->
     <script src="./assets/vendor/js/helpers.js"></script>
@@ -57,11 +57,11 @@
   </head>
 
   <body>
-   <div class="layout-wrapper layout-content-navbar">
+  <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
 
- <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
     <a href="index.html" class="app-brand-link">
       <span class="app-brand-logo demo">
@@ -150,11 +150,10 @@
     </a>
   </div>
 
-      <li class="menu-header mt-2">
+    <li class="menu-header mt-2">
       <span class="menu-header-text" data-i18n="Supplier">Supplier</span>
-    </li>
-
-  <ul class="menu-inner py-1">
+    </li>  
+    <ul class="menu-inner py-1">
     <!-- Dashboards -->
     <li class="menu-item">
       <a href="javascript:void(0);" class="menu-link">
@@ -165,7 +164,7 @@
     </li>
 
     <!-- Products -->
-    <li class="menu-item ">
+    <li class="menu-item">
       <a href="MyProducts.html" class="menu-link">
         <i class="menu-icon tf-icons bx bx-cube"></i>
         <!-- منتجات -->
@@ -174,7 +173,7 @@
     </li>
 
     <!-- Roles & Permissions -->
-    <li class="menu-item">
+    <li class="menu-item active">
       <a href="javascript:void(0);" class="menu-link">
         <i class="menu-icon tf-icons bx bx-shield-quarter"></i>
         <!-- الأدوار والأذونات -->
@@ -206,7 +205,7 @@
     </li>
 
     <!-- Chat -->
-    <li class="menu-item active">
+    <li class="menu-item">
       <a href="app-chat.html" class="menu-link">
         <i class="menu-icon tf-icons bx bx-chat"></i>
         <!-- المحادثة -->
@@ -748,677 +747,419 @@
             </div>
           </nav>
 
+
+            <!-- Content -->
+
             <div class="container-xxl flex-grow-1 container-p-y">
-              <div class="app-chat card overflow-hidden">
-                <div class="row g-0">
-                  <!-- Sidebar Left -->
-                  <div class="col app-chat-sidebar-left app-sidebar overflow-hidden" id="app-chat-sidebar-left">
-                    <div
-                      class="chat-sidebar-left-user sidebar-header d-flex flex-column justify-content-center align-items-center flex-wrap px-6 pt-12">
-                      <div class="avatar avatar-xl avatar-online chat-sidebar-avatar">
-                        <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
+              </p>
+              <!-- Role cards -->
+              <div class="row g-6">
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-1">Ali Emad</h5>
+                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
+                        
                       </div>
-                      <h5 class="mt-4 mb-0">John Doe</h5>
-                      <span>Admin</span>
-                      <i
-                        class="bx bx-x bx-lg cursor-pointer close-sidebar"
-                        data-bs-toggle="sidebar"
-                        data-overlay
-                        data-target="#app-chat-sidebar-left"></i>
-                    </div>
-                    <div class="sidebar-body px-6 pb-6">
-                      <div class="my-6">
-                        <label for="chat-sidebar-left-user-about" class="text-uppercase text-muted mb-1">About</label>
-                        <textarea
-                          id="chat-sidebar-left-user-about"
-                          class="form-control chat-sidebar-left-user-about"
-                          rows="3"
-                          maxlength="120">
-Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.</textarea
-                        >
-                      </div>
-                      <div class="my-6">
-                        <p class="text-uppercase text-muted mb-1">Status</p>
-                        <div class="d-grid gap-2 pt-2 text-heading ms-2">
-                          <div class="form-check form-check-success">
-                            <input
-                              name="chat-user-status"
-                              class="form-check-input"
-                              type="radio"
-                              value="active"
-                              id="user-active"
-                              checked />
-                            <label class="form-check-label" for="user-active">Online</label>
-                          </div>
-                          <div class="form-check form-check-warning">
-                            <input
-                              name="chat-user-status"
-                              class="form-check-input"
-                              type="radio"
-                              value="away"
-                              id="user-away" />
-                            <label class="form-check-label" for="user-away">Away</label>
-                          </div>
-                          <div class="form-check form-check-danger">
-                            <input
-                              name="chat-user-status"
-                              class="form-check-input"
-                              type="radio"
-                              value="busy"
-                              id="user-busy" />
-                            <label class="form-check-label" for="user-busy">Do not Disturb</label>
-                          </div>
-                          <div class="form-check form-check-secondary">
-                            <input
-                              name="chat-user-status"
-                              class="form-check-input"
-                              type="radio"
-                              value="offline"
-                              id="user-offline" />
-                            <label class="form-check-label" for="user-offline">Offline</label>
-                          </div>
+                      <div class="d-flex justify-content-between align-items-end">
+                        <div class="role-heading">
+                          <a
+                            href="javascript:;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addRoleModal"
+                            class="role-edit-modal"
+                            ><span>Edit Role</span></a
+                          >
                         </div>
-                      </div>
-                      <div class="my-6">
-                        <p class="text-uppercase text-muted mb-1">Settings</p>
-                        <ul class="list-unstyled d-grid gap-4 ms-2 pt-2 text-heading">
-                          <li class="d-flex justify-content-between align-items-center">
-                            <div>
-                              <i class="bx bx-lock-alt me-1"></i>
-                              <span class="align-middle">Two-step Verification</span>
-                            </div>
-                            <div class="form-check form-switch mb-0 me-1">
-                              <input type="checkbox" class="form-check-input" checked />
-                            </div>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center">
-                            <div>
-                              <i class="bx bx-bell me-1"></i>
-                              <span class="align-middle">Notification</span>
-                            </div>
-                            <div class="form-check form-switch mb-0 me-1">
-                              <input type="checkbox" class="form-check-input" />
-                            </div>
-                          </li>
-                          <li>
-                            <i class="bx bx-user me-1"></i>
-                            <span class="align-middle">Invite Friends</span>
-                          </li>
-                          <li>
-                            <i class="bx bx-trash me-1"></i>
-                            <span class="align-middle">Delete Account</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="d-flex mt-6">
-                        <button
-                          class="btn btn-primary w-100"
-                          data-bs-toggle="sidebar"
-                          data-overlay
-                          data-target="#app-chat-sidebar-left">
-                          <i class="bx bx-log-out bx-sm me-2"></i>Logout
-                        </button>
+                      <i class="bx bx-trash bx-md text-muted"></i>
+
                       </div>
                     </div>
                   </div>
-                  <!-- /Sidebar Left-->
-
-                  <!-- Chat & Contacts -->
-                  <div
-                    class="col app-chat-contacts app-sidebar flex-grow-0 overflow-hidden border-end"
-                    id="app-chat-contacts">
-                    <div class="sidebar-header px-6 border-bottom d-flex align-items-center">
-                      <div class="d-flex align-items-center me-6 me-lg-0">
-                        <div
-                          class="flex-shrink-0 avatar avatar-online me-4"
-                          data-bs-toggle="sidebar"
-                          data-overlay="app-overlay-ex"
-                          data-target="#app-chat-sidebar-left">
-                          <img
-                            class="user-avatar rounded-circle cursor-pointer"
-                            src="./assets/img/avatars/1.png"
-                            alt="Avatar" />
+                </div>
+                              <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-1">Ali Emad</h5>
+                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
+                        
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end">
+                        <div class="role-heading">
+                          <a
+                            href="javascript:;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addRoleModal"
+                            class="role-edit-modal"
+                            ><span>Edit Role</span></a
+                          >
                         </div>
-                        <div class="flex-grow-1 input-group input-group-merge rounded-pill">
-                          <span class="input-group-text" id="basic-addon-search31"
-                            ><i class="bx bx-search bx-sm"></i
-                          ></span>
+                      <i class="bx bx-trash bx-md text-muted"></i>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>                <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-1">Ali Emad</h5>
+                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
+                        
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end">
+                        <div class="role-heading">
+                          <a
+                            href="javascript:;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addRoleModal"
+                            class="role-edit-modal"
+                            ><span>Edit Role</span></a
+                          >
+                        </div>
+                      <i class="bx bx-trash bx-md text-muted"></i>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>                <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-1">Ali Emad</h5>
+                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
+                        
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end">
+                        <div class="role-heading">
+                          <a
+                            href="javascript:;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addRoleModal"
+                            class="role-edit-modal"
+                            ><span>Edit Role</span></a
+                          >
+                        </div>
+                      <i class="bx bx-trash bx-md text-muted"></i>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>                <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-1">Ali Emad</h5>
+                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
+                        
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end">
+                        <div class="role-heading">
+                          <a
+                            href="javascript:;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addRoleModal"
+                            class="role-edit-modal"
+                            ><span>Edit Role</span></a
+                          >
+                        </div>
+                      <i class="bx bx-trash bx-md text-muted"></i>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="card h-100">
+                    <div class="row h-100">
+                      <div class="col-sm-5">
+                        <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-4 ps-6">
+                          <img
+                            src="./assets/img/illustrations/lady-with-laptop-light.png"
+                            class="img-fluid"
+                            alt="Image"
+                            width="120"
+                            data-app-light-img="illustrations/lady-with-laptop-light.png"
+                            data-app-dark-img="illustrations/lady-with-laptop-dark.png" />
+                        </div>
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="card-body text-sm-end text-center ps-sm-0">
+                          <button
+                            data-bs-target="#addRoleModal"
+                            data-bs-toggle="modal"
+                            class="btn btn-sm btn-primary mb-4 text-nowrap add-new-role">
+                            Add New Person
+                          </button>
+                          <p class="mb-0">
+                            Add new Person, <br />
+                            if it doesn't exist.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+             
+              </div>
+              <!--/ Role cards -->
+
+              <!-- Add Role Modal -->
+              <!-- Add Role Modal -->
+              <div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <div class="text-center mb-6">
+                        <h4 class="role-title mb-2">Add New Person</h4>
+                      </div>
+                      <!-- Add role form -->
+                      <form id="addRoleForm" class="row g-6" onsubmit="return false">
+                        <div class="col-12">
+                          <label class="form-label" for="modalRoleName">Person Name</label>
                           <input
                             type="text"
-                            class="form-control chat-search-input"
-                            placeholder="Search..."
-                            aria-label="Search..."
-                            aria-describedby="basic-addon-search31" />
+                            id="modalRoleName"
+                            name="modalRoleName"
+                            class="form-control"
+                            placeholder="Enter a Person name"
+                            tabindex="-1" />
                         </div>
-                      </div>
-                      <i
-                        class="bx bx-x bx-lg cursor-pointer position-absolute top-50 end-0 translate-middle d-lg-none d-block"
-                        data-overlay
-                        data-bs-toggle="sidebar"
-                        data-target="#app-chat-contacts"></i>
-                    </div>
-                    <div class="sidebar-body">
-                      <!-- Chats -->
-                      <ul class="list-unstyled chat-contact-list py-2 mb-0" id="chat-list">
-                        <li class="chat-contact-list-item chat-contact-list-item-title mt-0">
-                          <h5 class="text-primary mb-0">Chats</h5>
-                        </li>
-                        <li class="chat-contact-list-item chat-list-item-0 d-none">
-                          <h6 class="text-muted mb-0">No Chats Found</h6>
-                        </li>
-                        <li class="chat-contact-list-item mb-1">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar avatar-online">
-                              <img src="./assets/img/avatars/13.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <div class="d-flex justify-content-between align-items-center">
-                                <h6 class="chat-contact-name text-truncate m-0 fw-normal">Waldemar Mannering</h6>
-                                <small class="text-muted">5 Minutes</small>
-                              </div>
-                              <small class="chat-contact-status text-truncate">Refer friends. Get rewards.</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item active mb-1">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar avatar-offline">
-                              <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <div class="d-flex justify-content-between align-items-center">
-                                <h6 class="chat-contact-name text-truncate fw-normal m-0">Felecia Rower</h6>
-                                <small class="text-muted">30 Minutes</small>
-                              </div>
-                              <small class="chat-contact-status text-truncate">I will purchase it for sure. 👍</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item mb-0">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar avatar-busy">
-                              <span class="avatar-initial rounded-circle bg-label-success">CM</span>
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <div class="d-flex justify-content-between align-items-center">
-                                <h6 class="chat-contact-name text-truncate fw-normal m-0">Calvin Moore</h6>
-                                <small class="text-muted">1 Day</small>
-                              </div>
-                              <small class="chat-contact-status text-truncate"
-                                >If it takes long you can mail inbox user</small
-                              >
-                            </div>
-                          </a>
-                        </li>
-                      </ul>
-                      <!-- Contacts -->
-                      <ul class="list-unstyled chat-contact-list mb-0 py-2" id="contact-list">
-                        <li class="chat-contact-list-item chat-contact-list-item-title mt-0">
-                          <h5 class="text-primary mb-0">Contacts</h5>
-                        </li>
-                        <li class="chat-contact-list-item contact-list-item-0 d-none">
-                          <h6 class="text-muted mb-0">No Contacts Found</h6>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Natalie Maxwell</h6>
-                              <small class="chat-contact-status text-truncate">UI/UX Designer</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Jess Cook</h6>
-                              <small class="chat-contact-status text-truncate">Business Analyst</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="avatar d-block flex-shrink-0">
-                              <span class="avatar-initial rounded-circle bg-label-primary">LM</span>
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Louie Mason</h6>
-                              <small class="chat-contact-status text-truncate">Resource Manager</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Krystal Norton</h6>
-                              <small class="chat-contact-status text-truncate">Business Executive</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/8.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Stacy Garrison</h6>
-                              <small class="chat-contact-status text-truncate">Marketing Ninja</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="avatar d-block flex-shrink-0">
-                              <span class="avatar-initial rounded-circle bg-label-success">CM</span>
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Calvin Moore</h6>
-                              <small class="chat-contact-status text-truncate">UX Engineer</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/10.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Mary Giles</h6>
-                              <small class="chat-contact-status text-truncate">Account Department</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/13.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Waldemar Mannering</h6>
-                              <small class="chat-contact-status text-truncate">AWS Support</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="avatar d-block flex-shrink-0">
-                              <span class="avatar-initial rounded-circle bg-label-danger">AJ</span>
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Amy Johnson</h6>
-                              <small class="chat-contact-status text-truncate">Frontend Developer</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">Felecia Rower</h6>
-                              <small class="chat-contact-status text-truncate">Cloud Engineer</small>
-                            </div>
-                          </a>
-                        </li>
-                        <li class="chat-contact-list-item mb-0">
-                          <a class="d-flex align-items-center">
-                            <div class="flex-shrink-0 avatar">
-                              <img src="./assets/img/avatars/11.png" alt="Avatar" class="rounded-circle" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="chat-contact-name text-truncate m-0 fw-normal">William Stephens</h6>
-                              <small class="chat-contact-status text-truncate">Backend Developer</small>
-                            </div>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!-- /Chat contacts -->
-
-                  <!-- Chat History -->
-                  <div class="col app-chat-history">
-                    <div class="chat-history-wrapper">
-                      <div class="chat-history-header border-bottom">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="d-flex overflow-hidden align-items-center">
-                            <i
-                              class="bx bx-menu bx-lg cursor-pointer d-lg-none d-block me-4"
-                              data-bs-toggle="sidebar"
-                              data-overlay
-                              data-target="#app-chat-contacts"></i>
-                            <div class="flex-shrink-0 avatar avatar-online">
-                              <img
-                                src="./assets/img/avatars/4.png"
-                                alt="Avatar"
-                                class="rounded-circle"
-                                data-bs-toggle="sidebar"
-                                data-overlay
-                                data-target="#app-chat-sidebar-right" />
-                            </div>
-                            <div class="chat-contact-info flex-grow-1 ms-4">
-                              <h6 class="m-0 fw-normal">Felecia Rower</h6>
-                              <small class="user-status text-body">NextJS developer</small>
-                            </div>
-                          </div>
-                          <div class="d-flex align-items-center">
-                            <i
-                              class="bx bx-phone bx-md cursor-pointer d-sm-inline-flex d-none btn btn-icon text-secondary me-1"></i>
-                            <i
-                              class="bx bx-video bx-md cursor-pointer d-sm-inline-flex d-none btn btn-icon text-secondary me-1"></i>
-                            <i
-                              class="bx bx-search bx-md cursor-pointer d-sm-inline-flex d-none btn btn-icon text-secondary me-1"></i>
-                            <div class="dropdown">
-                              <button
-                                class="btn btn-icon text-secondary dropdown-toggle hide-arrow"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="true"
-                                id="chat-header-actions">
-                                <i class="bx bx-dots-vertical-rounded bx-md"></i>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="chat-header-actions">
-                                <a class="dropdown-item" href="javascript:void(0);">View Contact</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Mute Notifications</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Block Contact</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Clear Chat</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Report</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="chat-history-body">
-                        <ul class="list-unstyled chat-history">
-                          <li class="chat-message chat-message-right">
-                            <div class="d-flex overflow-hidden">
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">How can we help? We're here for you! 😄</p>
-                                </div>
-                                <div class="text-end text-muted mt-1">
-                                  <i class="bx bx-check-double bx-16px text-success me-1"></i>
-                                  <small>10:00 AM</small>
-                                </div>
-                              </div>
-                              <div class="user-avatar flex-shrink-0 ms-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message">
-                            <div class="d-flex overflow-hidden">
-                              <div class="user-avatar flex-shrink-0 me-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">Hey John, I am looking for the best admin template.</p>
-                                  <p class="mb-0">Could you please help me to find it out? 🤔</p>
-                                </div>
-                                <div class="chat-message-text mt-2">
-                                  <p class="mb-0">It should be Bootstrap 5 compatible.</p>
-                                </div>
-                                <div class="text-muted mt-1">
-                                  <small>10:02 AM</small>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message chat-message-right">
-                            <div class="d-flex overflow-hidden">
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">sneat has all the components you'll ever need in a app.</p>
-                                </div>
-                                <div class="text-end text-muted mt-1">
-                                  <i class="bx bx-check-double bx-16px text-success me-1"></i>
-                                  <small>10:03 AM</small>
-                                </div>
-                              </div>
-                              <div class="user-avatar flex-shrink-0 ms-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message">
-                            <div class="d-flex overflow-hidden">
-                              <div class="user-avatar flex-shrink-0 me-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">Looks clean and fresh UI. 😃</p>
-                                </div>
-                                <div class="chat-message-text mt-2">
-                                  <p class="mb-0">It's perfect for my next project.</p>
-                                </div>
-                                <div class="chat-message-text mt-2">
-                                  <p class="mb-0">How can I purchase it?</p>
-                                </div>
-                                <div class="text-muted mt-1">
-                                  <small>10:05 AM</small>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message chat-message-right">
-                            <div class="d-flex overflow-hidden">
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">Thanks, you can purchase it.</p>
-                                </div>
-                                <div class="text-end text-muted mt-1">
-                                  <i class="bx bx-check-double bx-16px text-success me-1"></i>
-                                  <small>10:06 AM</small>
-                                </div>
-                              </div>
-                              <div class="user-avatar flex-shrink-0 ms-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message">
-                            <div class="d-flex overflow-hidden">
-                              <div class="user-avatar flex-shrink-0 me-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">I will purchase it for sure. 👍</p>
-                                </div>
-                                <div class="chat-message-text mt-2">
-                                  <p class="mb-0">Thanks.</p>
-                                </div>
-                                <div class="text-muted mt-1">
-                                  <small>10:08 AM</small>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message chat-message-right">
-                            <div class="d-flex overflow-hidden">
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">Great, Feel free to get in touch.</p>
-                                </div>
-                                <div class="text-end text-muted mt-1">
-                                  <i class="bx bx-check-double bx-16px text-success me-1"></i>
-                                  <small>10:10 AM</small>
-                                </div>
-                              </div>
-                              <div class="user-avatar flex-shrink-0 ms-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message">
-                            <div class="d-flex overflow-hidden">
-                              <div class="user-avatar flex-shrink-0 me-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                              <div class="chat-message-wrapper flex-grow-1">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">Do you have design files for sneat?</p>
-                                </div>
-                                <div class="text-muted mt-1">
-                                  <small>10:15 AM</small>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="chat-message chat-message-right">
-                            <div class="d-flex overflow-hidden">
-                              <div class="chat-message-wrapper flex-grow-1 w-50">
-                                <div class="chat-message-text">
-                                  <p class="mb-0">
-                                    Yes that's correct documentation file, Design files are included with the template.
-                                  </p>
-                                </div>
-                                <div class="text-end text-muted mt-1">
-                                  <i class="bx bx-check-double bx-16px me-1"></i>
-                                  <small>10:15 AM</small>
-                                </div>
-                              </div>
-                              <div class="user-avatar flex-shrink-0 ms-4">
-                                <div class="avatar avatar-sm">
-                                  <img src="./assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                      <!-- Chat message form -->
-                      <div class="chat-history-footer shadow-xs">
-                        <form class="form-send-message d-flex justify-content-between align-items-center">
+                        <div class="col-12">
+                          <label class="form-label" for="modalRoleEmail">Person Email </label>
                           <input
-                            class="form-control message-input border-0 me-4 shadow-none"
-                            placeholder="Type your message here..." />
-                          <div class="message-actions d-flex align-items-center">
-                            <i
-                              class="speech-to-text bx bx-microphone bx-md btn btn-icon cursor-pointer text-heading"></i>
-                            <label for="attach-doc" class="form-label mb-0">
-                              <i class="bx bx-paperclip bx-md cursor-pointer btn btn-icon mx-1 text-heading"></i>
-                              <input type="file" id="attach-doc" hidden />
-                            </label>
-                            <button class="btn btn-primary d-flex send-msg-btn">
-                              <span class="align-middle d-md-inline-block d-none">Send</span>
-                              <i class="bx bx-paper-plane bx-sm ms-md-2 ms-0"></i>
-                            </button>
+                            type="text"
+                            id="modalRoleEmail"
+                            name="modalRoleEmail"
+                            class="form-control"
+                            placeholder="Enter a Person Email"
+                            tabindex="-1" />
+                        </div>
+                        <div class="col-12">
+                          <h5 class="mb-6">Role Permissions</h5>
+                          <!-- Permission table -->
+                          <div class="table-responsive">
+                            <table class="table table-flush-spacing mb-0">
+                              <tbody>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">
+                                    Administrator Access
+                                    <i
+                                      class="bx bx-info-circle"
+                                      data-bs-toggle="tooltip"
+                                      data-bs-placement="top"
+                                      title="Allows a full access to the system"></i>
+                                  </td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="selectAll" />
+                                        <label class="form-check-label" for="selectAll"> Select All </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">User Management</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="userManagementRead" />
+                                        <label class="form-check-label" for="userManagementRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="userManagementWrite" />
+                                        <label class="form-check-label" for="userManagementWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="userManagementCreate" />
+                                        <label class="form-check-label" for="userManagementCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">Content Management</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="contentManagementRead" />
+                                        <label class="form-check-label" for="contentManagementRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="contentManagementWrite" />
+                                        <label class="form-check-label" for="contentManagementWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="contentManagementCreate" />
+                                        <label class="form-check-label" for="contentManagementCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">Disputes Management</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="dispManagementRead" />
+                                        <label class="form-check-label" for="dispManagementRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="dispManagementWrite" />
+                                        <label class="form-check-label" for="dispManagementWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="dispManagementCreate" />
+                                        <label class="form-check-label" for="dispManagementCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">Database Management</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="dbManagementRead" />
+                                        <label class="form-check-label" for="dbManagementRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="dbManagementWrite" />
+                                        <label class="form-check-label" for="dbManagementWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="dbManagementCreate" />
+                                        <label class="form-check-label" for="dbManagementCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">Financial Management</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="finManagementRead" />
+                                        <label class="form-check-label" for="finManagementRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="finManagementWrite" />
+                                        <label class="form-check-label" for="finManagementWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="finManagementCreate" />
+                                        <label class="form-check-label" for="finManagementCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">Reporting</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="reportingRead" />
+                                        <label class="form-check-label" for="reportingRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="reportingWrite" />
+                                        <label class="form-check-label" for="reportingWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="reportingCreate" />
+                                        <label class="form-check-label" for="reportingCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">API Control</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="apiRead" />
+                                        <label class="form-check-label" for="apiRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="apiWrite" />
+                                        <label class="form-check-label" for="apiWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="apiCreate" />
+                                        <label class="form-check-label" for="apiCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">Repository Management</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="repoRead" />
+                                        <label class="form-check-label" for="repoRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="repoWrite" />
+                                        <label class="form-check-label" for="repoWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="repoCreate" />
+                                        <label class="form-check-label" for="repoCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="text-nowrap fw-medium text-heading">Payroll</td>
+                                  <td>
+                                    <div class="d-flex justify-content-end">
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="payrollRead" />
+                                        <label class="form-check-label" for="payrollRead"> Read </label>
+                                      </div>
+                                      <div class="form-check mb-0 me-4 me-lg-12">
+                                        <input class="form-check-input" type="checkbox" id="payrollWrite" />
+                                        <label class="form-check-label" for="payrollWrite"> Write </label>
+                                      </div>
+                                      <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" id="payrollCreate" />
+                                        <label class="form-check-label" for="payrollCreate"> Create </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
-                        </form>
-                      </div>
+                          <!-- Permission table -->
+                        </div>
+                        <div class="col-12 text-center">
+                          <button type="submit" class="btn btn-primary me-3">Submit</button>
+                          <button
+                            type="reset"
+                            class="btn btn-label-secondary"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                            Cancel
+                          </button>
+                        </div>
+                      </form>
+                      <!--/ Add role form -->
                     </div>
                   </div>
-                  <!-- /Chat History -->
-
-                  <!-- Sidebar Right -->
-                  <div class="col app-chat-sidebar-right app-sidebar overflow-hidden" id="app-chat-sidebar-right">
-                    <div
-                      class="sidebar-header d-flex flex-column justify-content-center align-items-center flex-wrap px-6 pt-12">
-                      <div class="avatar avatar-xl avatar-online chat-sidebar-avatar">
-                        <img src="./assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
-                      </div>
-                      <h5 class="mt-4 mb-0">Felecia Rower</h5>
-                      <span>NextJS Developer</span>
-                      <i
-                        class="bx bx-x bx-lg cursor-pointer close-sidebar d-block"
-                        data-bs-toggle="sidebar"
-                        data-overlay
-                        data-target="#app-chat-sidebar-right"></i>
-                    </div>
-                    <div class="sidebar-body p-6 pt-0">
-                      <div class="my-6">
-                        <p class="text-uppercase mb-1 text-muted">About</p>
-                        <p class="mb-0">
-                          It is a long established fact that a reader will be distracted by the readable content .
-                        </p>
-                      </div>
-                      <div class="my-6">
-                        <p class="text-uppercase mb-1 text-muted">Personal Information</p>
-                        <ul class="list-unstyled d-grid gap-4 mb-0 ms-2 py-2 text-heading">
-                          <li class="d-flex align-items-center">
-                            <i class="bx bx-envelope"></i>
-                            <span class="align-middle ms-2">josephGreen@email.com</span>
-                          </li>
-                          <li class="d-flex align-items-center">
-                            <i class="bx bx-phone-call"></i>
-                            <span class="align-middle ms-2">+1(123) 456 - 7890</span>
-                          </li>
-                          <li class="d-flex align-items-center">
-                            <i class="bx bx-time-five"></i>
-                            <span class="align-middle ms-2">Mon - Fri 10AM - 8PM</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="my-6">
-                        <p class="text-uppercase text-muted mb-1">Options</p>
-                        <ul class="list-unstyled d-grid gap-4 ms-2 py-2 text-heading">
-                          <li class="cursor-pointer d-flex align-items-center">
-                            <i class="bx bx-bookmark"></i>
-                            <span class="align-middle ms-2">Add Tag</span>
-                          </li>
-                          <li class="cursor-pointer d-flex align-items-center">
-                            <i class="bx bx-star"></i>
-                            <span class="align-middle ms-2">Important Contact</span>
-                          </li>
-                          <li class="cursor-pointer d-flex align-items-center">
-                            <i class="bx bx-image-alt"></i>
-                            <span class="align-middle ms-2">Shared Media</span>
-                          </li>
-                          <li class="cursor-pointer d-flex align-items-center">
-                            <i class="bx bx-trash"></i>
-                            <span class="align-middle ms-2">Delete Contact</span>
-                          </li>
-                          <li class="cursor-pointer d-flex align-items-center">
-                            <i class="bx bx-block"></i>
-                            <span class="align-middle ms-2">Block Contact</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="d-flex mt-6">
-                        <button
-                          class="btn btn-danger w-100"
-                          data-bs-toggle="sidebar"
-                          data-overlay
-                          data-target="#app-chat-sidebar-right">
-                          Delete Contact<i class="bx bx-trash bx-sm ms-2"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /Sidebar Right -->
-
-                  <div class="app-overlay"></div>
                 </div>
               </div>
+              <!--/ Add Role Modal -->
+
+              <!-- / Add Role Modal -->
             </div>
-            <!-- / Content -->
+            <!--/ Content -->
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
@@ -1458,18 +1199,20 @@ Hey there, we’re just writing to let you know that you’ve been subscribed to
 
             <div class="content-backdrop fade"></div>
           </div>
-          <!-- Content wrapper -->
+          <!--/ Content wrapper -->
         </div>
-        <!-- / Layout page -->
+
+        <!--/ Layout container -->
       </div>
-
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
-
-      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-      <div class="drag-target"></div>
     </div>
-    <!-- / Layout wrapper -->
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+
+    <!--/ Layout wrapper -->
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -1486,12 +1229,17 @@ Hey there, we’re just writing to let you know that you’ve been subscribed to
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="./assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+    <script src="./assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+
+    <script src="./assets/vendor/libs/@form-validation/popular.js"></script>
+    <script src="./assets/vendor/libs/@form-validation/bootstrap5.js"></script>
+    <script src="./assets/vendor/libs/@form-validation/auto-focus.js"></script>
 
     <!-- Main JS -->
     <script src="./assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="./assets/js/app-chat.js"></script>
+    <script src="./assets/js/app-access-roles.js"></script>
+    <script src="./assets/js/modal-add-role.js"></script>
   </body>
 </html>
