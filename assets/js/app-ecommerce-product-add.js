@@ -136,3 +136,77 @@ $(function () {
     });
   }
 });
+
+
+
+
+
+
+function validateAndSubmitForm() {
+    // الحصول على البيانات من الحقول
+    const productName = document.getElementById("ecommerce-product-name").value.trim();
+    const productDescription = document.getElementById("ecommerce-category-description").innerText.trim();
+    const productPrice = document.getElementById("ecommerce-product-price").value.trim();
+    const category = document.getElementById("category-org").value;
+    
+    // التحقق من أن جميع الحقول تحتوي على قيم
+    if (!productName) {
+        alert("يرجى إدخال اسم المنتج.");
+        return; // إيقاف الإرسال إذا كانت البيانات غير مكتملة
+    }
+    if (!productDescription) {
+        alert("يرجى إدخال وصف المنتج.");
+        return;
+    }
+    if (!productPrice) {
+        alert("يرجى إدخال سعر المنتج.");
+        return;
+    }
+    if (!category) {
+        alert("يرجى اختيار الفئة.");
+        return;
+    }
+
+    // تحقق من أن الصورة تم رفعها
+    const dropzone = Dropzone.forElement("#dropzone-basic");
+    if (dropzone.files.length === 0) {
+        alert("يرجى رفع صورة للمنتج.");
+        return;
+    }
+
+    // إعداد البيانات لإرسالها عبر API
+    const formData = new FormData();
+    formData.append('Name', productName);
+    formData.append('Description', productDescription);
+    formData.append('CategoryId', category);
+    formData.append('price', productPrice);
+    formData.append('DateTime', new Date().toISOString());
+    formData.append('MediaUrls', dropzone.files[0]); // استخدام الصورة المرفوعة
+
+    // إرسال البيانات عبر API
+    fetch('https://localhost:7130/api/Product', {
+        method: 'POST',
+        headers: {
+            'Accept': '*/*',
+        },
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data && data.success) {
+            alert("تم نشر المنتج بنجاح!");
+        } else {
+            alert("فشل نشر المنتج. حاول مرة أخرى.");
+        }
+    })
+    .catch(error => {
+        console.error("حدث خطأ أثناء نشر المنتج:", error);
+        alert("حدث خطأ أثناء نشر المنتج.");
+    });
+}
+
+// إضافة حدث عند الضغط على زر "Publish product"
+document.querySelector("button[type='submit']").addEventListener("click", function(event) {
+    event.preventDefault(); // منع التصرف الافتراضي للنموذج
+    validateAndSubmitForm(); // التحقق وإرسال البيانات
+});

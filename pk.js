@@ -20,12 +20,7 @@ $(function () {
 
   // Variable declaration for table
   var dt_product_table = $('.datatables-products'),
-    productAdd = 'app-ecommerce-product-add.html',
-    statusObj = {
-      1: { title: 'Scheduled', class: 'bg-label-warning' },
-      2: { title: 'Publish', class: 'bg-label-success' },
-      3: { title: 'Inactive', class: 'bg-label-danger' }
-    },
+    productAdd = 'edit-product.html',
     categoryObj = {
       0: { title: 'Household' },
       1: { title: 'Office' },
@@ -46,9 +41,9 @@ $(function () {
   // E-commerce Products datatable
 
   if (dt_product_table.length) {
-    var dt_products = dt_product_table.DataTable({
+ var dt_products = dt_product_table.DataTable({
       ajax: assetsPath + 'json/ecommerce-product-list.json', // JSON file to add data
- columns: [
+columns: [
   { data: 'CategoryId' },
   { data: 'Name' },
   { data: 'category' },
@@ -222,23 +217,178 @@ if ($MediaUrls && $MediaUrls.length > 0) {
 
       ],
       order: [2, 'asc'], //set any columns order asc/desc
-   
+      dom:
+        '<"card-header d-flex border-top rounded-0 flex-wrap py-0 flex-column flex-md-row align-items-start"' +
+        '<"me-5 ms-n4 pe-5 mb-n6 mb-md-0"f>' +
+        '<"d-flex justify-content-start justify-content-md-end align-items-baseline"<"dt-action-buttons d-flex flex-column align-items-start align-items-sm-center justify-content-sm-center pt-0 gap-sm-4 gap-sm-0 flex-sm-row"lB>>' +
+        '>t' +
+        '<"row"' +
+        '<"col-sm-12 col-md-6"i>' +
+        '<"col-sm-12 col-md-6"p>' +
+        '>',
+      lengthMenu: [7, 10, 20, 50, 70, 100], //for length of menu
       language: {
+        sLengthMenu: '_MENU_',
         search: '',
         searchPlaceholder: 'Search Product',
+        info: 'Displaying _START_ to _END_ of _TOTAL_ entries',
         paginate: {
           next: '<i class="bx bx-chevron-right bx-18px"></i>',
           previous: '<i class="bx bx-chevron-left bx-18px"></i>'
         }
       },
-
+      // Buttons with Dropdown
+      buttons: [
+        {
+          extend: 'collection',
+          className: 'btn btn-label-secondary dropdown-toggle me-4',
+          text: '<i class="bx bx-export me-2 bx-xs"></i>Export',
+          buttons: [
+            {
+              extend: 'print',
+              text: '<i class="bx bx-printer me-2" ></i>Print',
+              className: 'dropdown-item',
+              exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7],
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    if (inner.length <= 0) return inner;
+                    var el = $.parseHTML(inner);
+                    var result = '';
+                    $.each(el, function (index, item) {
+                      if (item.classList !== undefined && item.classList.contains('product-name')) {
+                        result = result + item.lastChild.firstChild.textContent;
+                      } else if (item.innerText === undefined) {
+                        result = result + item.textContent;
+                      } else result = result + item.innerText;
+                    });
+                    return result;
+                  }
+                }
+              },
+              customize: function (win) {
+                // Customize print view for dark
+                $(win.document.body)
+                  .css('color', headingColor)
+                  .css('border-color', borderColor)
+                  .css('background-color', bodyBg);
+                $(win.document.body)
+                  .find('table')
+                  .addClass('compact')
+                  .css('color', 'inherit')
+                  .css('border-color', 'inherit')
+                  .css('background-color', 'inherit');
+              }
+            },
+            {
+              extend: 'csv',
+              text: '<i class="bx bx-file me-2" ></i>Csv',
+              className: 'dropdown-item',
+              exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7],
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    if (inner.length <= 0) return inner;
+                    var el = $.parseHTML(inner);
+                    var result = '';
+                    $.each(el, function (index, item) {
+                      if (item.classList !== undefined && item.classList.contains('product-name')) {
+                        result = result + item.lastChild.firstChild.textContent;
+                      } else if (item.innerText === undefined) {
+                        result = result + item.textContent;
+                      } else result = result + item.innerText;
+                    });
+                    return result;
+                  }
+                }
+              }
+            },
+            {
+              extend: 'excel',
+              text: '<i class="bx bxs-file-export me-2"></i>Excel',
+              className: 'dropdown-item',
+              exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7],
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    if (inner.length <= 0) return inner;
+                    var el = $.parseHTML(inner);
+                    var result = '';
+                    $.each(el, function (index, item) {
+                      if (item.classList !== undefined && item.classList.contains('product-name')) {
+                        result = result + item.lastChild.firstChild.textContent;
+                      } else if (item.innerText === undefined) {
+                        result = result + item.textContent;
+                      } else result = result + item.innerText;
+                    });
+                    return result;
+                  }
+                }
+              }
+            },
+            {
+              extend: 'pdf',
+              text: '<i class="bx bxs-file-pdf me-2"></i>Pdf',
+              className: 'dropdown-item',
+              exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7],
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    if (inner.length <= 0) return inner;
+                    var el = $.parseHTML(inner);
+                    var result = '';
+                    $.each(el, function (index, item) {
+                      if (item.classList !== undefined && item.classList.contains('product-name')) {
+                        result = result + item.lastChild.firstChild.textContent;
+                      } else if (item.innerText === undefined) {
+                        result = result + item.textContent;
+                      } else result = result + item.innerText;
+                    });
+                    return result;
+                  }
+                }
+              }
+            },
+            {
+              extend: 'copy',
+              text: '<i class="bx bx-copy me-2" ></i>Copy',
+              className: 'dropdown-item',
+              exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7],
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    if (inner.length <= 0) return inner;
+                    var el = $.parseHTML(inner);
+                    var result = '';
+                    $.each(el, function (index, item) {
+                      if (item.classList !== undefined && item.classList.contains('product-name')) {
+                        result = result + item.lastChild.firstChild.textContent;
+                      } else if (item.innerText === undefined) {
+                        result = result + item.textContent;
+                      } else result = result + item.innerText;
+                    });
+                    return result;
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          text: '<i class="bx bx-plus me-0 me-sm-1 bx-xs"></i><span class="d-none d-sm-inline-block">Add Product</span>',
+          className: 'add-new btn btn-primary',
+          action: function () {
+            window.location.href = productAdd;
+          }
+        }
+      ],
       // For responsive popup
       responsive: {
         details: {
           display: $.fn.dataTable.Responsive.display.modal({
             header: function (row) {
               var data = row.data();
-              return 'Details of ' + data['product_name'];
+              return 'Details of ' + data['Name'];
             }
           }),
           type: 'column',
@@ -265,7 +415,52 @@ if ($MediaUrls && $MediaUrls.length > 0) {
           }
         }
       },
-  
+      initComplete: function () {
+        // Adding category filter once table initialized
+        this.api()
+          .columns(3)
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select id="ProductCategory" class="form-select text-capitalize"><option value="">Category</option></select>'
+            )
+              .appendTo('.product_category')
+              .on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                column.search(val ? '^' + val + '$' : '', true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + categoryObj[d].title + '">' + categoryObj[d].title + '</option>');
+              });
+          });
+        // Adding stock filter once table initialized
+        this.api()
+          .columns(4)
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select id="ProductStock" class="form-select text-capitalize"><option value=""> Stock </option></select>'
+            )
+              .appendTo('.product_stock')
+              .on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                column.search(val ? '^' + val + '$' : '', true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + stockObj[d].title + '">' + stockFilterValObj[d].title + '</option>');
+              });
+          });
+      }
     });
     $('.dataTables_length').addClass('mx-n2');
     $('.dt-buttons').addClass('d-flex flex-wrap mb-6 mb-sm-0');
