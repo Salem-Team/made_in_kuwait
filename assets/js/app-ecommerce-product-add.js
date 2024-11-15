@@ -210,3 +210,122 @@ document.querySelector("button[type='submit']").addEventListener("click", functi
     event.preventDefault(); // منع التصرف الافتراضي للنموذج
     validateAndSubmitForm(); // التحقق وإرسال البيانات
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// استخراج معرف المنتج من رابط الصفحة
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('id');
+
+// التحقق من وجود معرف المنتج
+if (!productId) {
+  alert('Product ID is missing from the URL!');
+  throw new Error('Product ID is required to load the product data.');
+}
+
+// استدعاء بيانات المنتج من API
+async function fetchProductData(id) {
+  try {
+    const response = await fetch(`https://localhost:7130/api/Product/${id}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch product data: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching product data:', error);
+    alert('Error fetching product data. Please try again later.');
+  }
+}
+
+// تعبئة الحقول بالبيانات المسترجعة
+async function populateForm() {
+  const productData = await fetchProductData(productId);
+  if (productData) {
+    // تعبئة الحقول بالبيانات
+    document.getElementById('ecommerce-product-name').value = productData.name || '';
+    const quillEditor = new Quill('#ecommerce-category-description', {
+      theme: 'snow',
+    });
+    quillEditor.setContents([{ insert: productData.description || '' }]);
+
+    document.getElementById('ecommerce-product-price').value = productData.price || '';
+    document.getElementById('category-org').value = productData.categoryId || '';
+  }
+}
+
+// تحميل البيانات عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+  populateForm();
+});
+
+// حفظ البيانات المعدلة عند الضغط على زر "Save Changes"
+async function validateAndSubmitForm() {
+  const productName = document.getElementById('ecommerce-product-name').value.trim();
+  const quillEditor = new Quill('#ecommerce-category-description', { theme: 'snow' });
+  const productDescription = quillEditor.getText().trim();
+  const productPrice = document.getElementById('ecommerce-product-price').value.trim();
+  const category = document.getElementById('category-org').value;
+
+  if (!productName || !productDescription || !productPrice || !category) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const formData = {
+    id: productId,
+    name: productName,
+    description: productDescription,
+    price: parseFloat(productPrice),
+    categoryId: category,
+  };
+
+  try {
+    const response = await fetch(`https://localhost:7130/api/Product/${productId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert('Product updated successfully!');
+    } else {
+      throw new Error(`Failed to update product: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error('Error updating product:', error);
+    alert('Failed to update product. Please try again.');
+  }
+}
+
+// إضافة الحدث لزر "Save Changes"
+document.querySelector('button[type="submit"]').addEventListener('click', (event) => {
+  event.preventDefault();
+  validateAndSubmitForm();
+});

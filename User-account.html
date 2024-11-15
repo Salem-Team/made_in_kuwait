@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Demo : Roles - Apps | sneat - Bootstrap Dashboard PRO</title>
+    <title>Demo : User View - Pages | sneat - Bootstrap Dashboard PRO</title>
 
     <meta name="description" content="" />
 
@@ -43,9 +43,15 @@
     <link rel="stylesheet" href="./assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="./assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
     <link rel="stylesheet" href="./assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/animate-css/animate.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/sweetalert2/sweetalert2.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/select2/select2.css" />
     <link rel="stylesheet" href="./assets/vendor/libs/@form-validation/form-validation.css" />
 
     <!-- Page CSS -->
+
+    <link rel="stylesheet" href="./assets/vendor/css/pages/page-user-view.css" />
 
     <!-- Helpers -->
     <script src="./assets/vendor/js/helpers.js"></script>
@@ -150,87 +156,100 @@
     </a>
   </div>
 
-    <li class="menu-header mt-2">
+      <li class="menu-header mt-2">
       <span class="menu-header-text" data-i18n="Supplier">Supplier</span>
-    </li>  
-    <ul class="menu-inner py-1">
-    <!-- Dashboards -->
-    <li class="menu-item">
-      <a href="javascript:void(0);" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-grid-alt"></i>
-        <!-- لوحة القيادة -->
-        <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
-      </a>
     </li>
 
-    <!-- Products -->
-    <li class="menu-item">
-      <a href="MyProducts.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-cube"></i>
-        <!-- منتجات -->
-        <div class="text-truncate" data-i18n="My Products">My Products</div>
-      </a>
-    </li>
+<ul class="menu-inner py-1">
+  <!-- Dashboard -->
+  <li class="menu-item">
+    <a href="./Dashboard.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-home-alt"></i>
+      <div class="text-truncate" data-i18n="Dashboard">Dashboard</div>
+    </a>
+  </li>
 
-    <!-- Roles & Permissions -->
-    <li class="menu-item active">
-      <a href="javascript:void(0);" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-shield-quarter"></i>
-        <!-- الأدوار والأذونات -->
-        <div class="text-truncate" data-i18n="Roles & Permissions">
-          Roles & Permissions
-        </div>
-      </a>
-    </li>
+  <!-- Products -->
+  <li class="menu-item">
+    <a href="./MyProducts.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-cube"></i>
+      <div class="text-truncate" data-i18n="My Products">My Products</div>
+    </a>
+  </li>
 
-    <!-- Company Profile -->
-    <li class="menu-item">
-      <a href="javascript:void(0);" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-store"></i>
-        <!-- المتجر -->
-        <div class="text-truncate" data-i18n="Company Profile">
-          Company Profile
-        </div>
-      </a>
-    </li>
+  <!-- Categories -->
+  <li class="menu-item">
+    <a href="Categories.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-category"></i>
+      <div class="text-truncate" data-i18n="My RFQ">RFQ</div>
+    </a>
+  </li>
 
-    <!-- Tenders -->
+  <!-- Roles & Permissions -->
+  <li class="menu-item">
+    <a href="Supplier-Roles.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-shield"></i>
+      <div class="text-truncate" data-i18n="Roles & Permissions">Roles & Permissions</div>
+    </a>
+  </li>
 
-    <li class="menu-item">
-      <a href="javascript:void(0);" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <!-- المناقصات -->
-        <div class="text-truncate" data-i18n="My Tenders">My Tenders</div>
-      </a>
-    </li>
+  <!-- Company Profile -->
+  <li class="menu-item ">
+    <a href="Company-Profile.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-building-house"></i>
+      <div class="text-truncate" data-i18n="Company Profile">Company Profile</div>
+    </a>
+  </li>
 
-    <!-- Chat -->
-    <li class="menu-item">
-      <a href="app-chat.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-chat"></i>
-        <!-- المحادثة -->
-        <div class="text-truncate" data-i18n="Chat">Chat</div>
-      </a>
-    </li>
+  <!-- Tenders -->
+  <li class="menu-item">
+    <a href="javascript:void(0);" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-file"></i>
+      <div class="text-truncate" data-i18n="My Tenders">My Tenders</div>
+    </a>
+  </li>
 
-    <!-- Requests -->
-    <li class="menu-item">
-      <a href="Requests.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-envelope"></i>
-        <!-- الطلبات -->
-        <div class="text-truncate" data-i18n="Requests">Requests</div>
-      </a>
-    </li>
+  <!-- Chat -->
+  <li class="menu-item">
+    <a href="app-chat.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-message-square-detail"></i>
+      <div class="text-truncate" data-i18n="Chat">Chat</div>
+    </a>
+  </li>
 
-    <!-- User Account -->
-    <li class="menu-item">
-      <a href="app-chat.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <!-- الحساب -->
-        <div class="text-truncate" data-i18n="User Account">User Account</div>
-      </a>
-    </li>
-  </ul>
+  <!-- Requests -->
+  <li class="menu-item">
+    <a href="Requests.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-envelope"></i>
+      <div class="text-truncate" data-i18n="Requests">Requests</div>
+    </a>
+  </li>
+
+  <!-- Subscriptions -->
+  <li class="menu-item">
+    <a href="subscriptions.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-receipt"></i>
+      <div class="text-truncate" data-i18n="Subscriptions">Subscriptions</div>
+    </a>
+  </li>
+
+  <!-- Notifications -->
+  <li class="menu-item">
+    <a href="notifications.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-bell"></i>
+      <div class="text-truncate" data-i18n="Notifications">Notifications</div>
+    </a>
+  </li>
+
+  <!-- User Account -->
+  <li class="menu-item active">
+    <a href="user-account.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-user"></i>
+      <div class="text-truncate" data-i18n="User Account">User Account</div>
+    </a>
+  </li>
+</ul>
+
 </aside>
         <!-- / Menu -->
 
@@ -748,427 +767,159 @@
           </nav>
 
 
-            <!-- Content -->
-
-            <div class="container-xxl flex-grow-1 container-p-y">
-              </p>
-              <!-- Role cards -->
-              <div class="row g-6">
-                <div class="col-xl-4 col-lg-6 col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="mb-1">Ali Emad</h5>
-                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
-                        
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="role-heading">
-                          <a
-                            href="javascript:;"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addRoleModal"
-                            class="role-edit-modal"
-                            ><span>Edit Role</span></a
-                          >
-                        </div>
-                      <i class="bx bx-trash bx-md text-muted"></i>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                              <div class="col-xl-4 col-lg-6 col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="mb-1">Ali Emad</h5>
-                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
-                        
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="role-heading">
-                          <a
-                            href="javascript:;"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addRoleModal"
-                            class="role-edit-modal"
-                            ><span>Edit Role</span></a
-                          >
-                        </div>
-                      <i class="bx bx-trash bx-md text-muted"></i>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>                <div class="col-xl-4 col-lg-6 col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="mb-1">Ali Emad</h5>
-                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
-                        
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="role-heading">
-                          <a
-                            href="javascript:;"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addRoleModal"
-                            class="role-edit-modal"
-                            ><span>Edit Role</span></a
-                          >
-                        </div>
-                      <i class="bx bx-trash bx-md text-muted"></i>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>                <div class="col-xl-4 col-lg-6 col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="mb-1">Ali Emad</h5>
-                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
-                        
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="role-heading">
-                          <a
-                            href="javascript:;"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addRoleModal"
-                            class="role-edit-modal"
-                            ><span>Edit Role</span></a
-                          >
-                        </div>
-                      <i class="bx bx-trash bx-md text-muted"></i>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>                <div class="col-xl-4 col-lg-6 col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="mb-1">Ali Emad</h5>
-                        <h6 class="fw-normal mb-0 text-body">mas2022mas2004@gmail.com</h6>
-                        
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="role-heading">
-                          <a
-                            href="javascript:;"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addRoleModal"
-                            class="role-edit-modal"
-                            ><span>Edit Role</span></a
-                          >
-                        </div>
-                      <i class="bx bx-trash bx-md text-muted"></i>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6">
-                  <div class="card h-100">
-                    <div class="row h-100">
-                      <div class="col-sm-5">
-                        <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-4 ps-6">
-                          <img
-                            src="./assets/img/illustrations/lady-with-laptop-light.png"
-                            class="img-fluid"
-                            alt="Image"
-                            width="120"
-                            data-app-light-img="illustrations/lady-with-laptop-light.png"
-                            data-app-dark-img="illustrations/lady-with-laptop-dark.png" />
-                        </div>
-                      </div>
-                      <div class="col-sm-7">
-                        <div class="card-body text-sm-end text-center ps-sm-0">
-                          <button
-                            data-bs-target="#addRoleModal"
-                            data-bs-toggle="modal"
-                            class="btn btn-sm btn-primary mb-4 text-nowrap add-new-role">
-                            Add New Person
-                          </button>
-                          <p class="mb-0">
-                            Add new Person, <br />
-                            if it doesn't exist.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-             
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="row">
+    <div class="col-xl-12 col-lg-5 order-1 order-md-0">
+      <div class="card mb-6">
+        <div class="card-body pt-12">
+          <div class="user-avatar-section">
+            <div class="d-flex align-items-center flex-column">
+              <img
+                class="img-fluid rounded mb-4"
+                src="./assets/img/avatars/1.png"
+                height="120"
+                width="120"
+                alt="User avatar" />
+              <div class="user-info text-center">
+                <h5>John Doe</h5>
               </div>
-              <!--/ Role cards -->
-
-              <!-- Add Role Modal -->
-              <!-- Add Role Modal -->
-              <div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      <div class="text-center mb-6">
-                        <h4 class="role-title mb-2">Add New Person</h4>
-                      </div>
-                      <!-- Add role form -->
-                      <form id="addRoleForm" class="row g-6" onsubmit="return false">
-                        <div class="col-12">
-                          <label class="form-label" for="modalRoleName">Person Name</label>
-                          <input
-                            type="text"
-                            id="modalRoleName"
-                            name="modalRoleName"
-                            class="form-control"
-                            placeholder="Enter a Person name"
-                            tabindex="-1" />
-                        </div>
-                        <div class="col-12">
-                          <label class="form-label" for="modalRoleEmail">Person Email </label>
-                          <input
-                            type="text"
-                            id="modalRoleEmail"
-                            name="modalRoleEmail"
-                            class="form-control"
-                            placeholder="Enter a Person Email"
-                            tabindex="-1" />
-                        </div>
-                        <div class="col-12">
-                          <label class="form-label" for="modalRoleEmail">Person Password </label>
-                          <input
-                            type="text"
-                            id="modalRolePassword "
-                            name="modalRolePassword "
-                            class="form-control"
-                            placeholder="Enter a Person Password "
-                            tabindex="-1" />
-                        </div>
-                        <div class="col-12">
-                          <h5 class="mb-6">Role Permissions</h5>
-                          <!-- Permission table -->
-                          <div class="table-responsive">
-                            <table class="table table-flush-spacing mb-0">
-                              <tbody>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">
-                                    Administrator Access
-                                    <i
-                                      class="bx bx-info-circle"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      title="Allows a full access to the system"></i>
-                                  </td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="selectAll" />
-                                        <label class="form-check-label" for="selectAll"> Select All </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">User Management</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="userManagementRead" />
-                                        <label class="form-check-label" for="userManagementRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="userManagementWrite" />
-                                        <label class="form-check-label" for="userManagementWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="userManagementCreate" />
-                                        <label class="form-check-label" for="userManagementCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">Content Management</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="contentManagementRead" />
-                                        <label class="form-check-label" for="contentManagementRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="contentManagementWrite" />
-                                        <label class="form-check-label" for="contentManagementWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="contentManagementCreate" />
-                                        <label class="form-check-label" for="contentManagementCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">Disputes Management</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="dispManagementRead" />
-                                        <label class="form-check-label" for="dispManagementRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="dispManagementWrite" />
-                                        <label class="form-check-label" for="dispManagementWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="dispManagementCreate" />
-                                        <label class="form-check-label" for="dispManagementCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">Database Management</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="dbManagementRead" />
-                                        <label class="form-check-label" for="dbManagementRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="dbManagementWrite" />
-                                        <label class="form-check-label" for="dbManagementWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="dbManagementCreate" />
-                                        <label class="form-check-label" for="dbManagementCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">Financial Management</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="finManagementRead" />
-                                        <label class="form-check-label" for="finManagementRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="finManagementWrite" />
-                                        <label class="form-check-label" for="finManagementWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="finManagementCreate" />
-                                        <label class="form-check-label" for="finManagementCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">Reporting</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="reportingRead" />
-                                        <label class="form-check-label" for="reportingRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="reportingWrite" />
-                                        <label class="form-check-label" for="reportingWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="reportingCreate" />
-                                        <label class="form-check-label" for="reportingCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">API Control</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="apiRead" />
-                                        <label class="form-check-label" for="apiRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="apiWrite" />
-                                        <label class="form-check-label" for="apiWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="apiCreate" />
-                                        <label class="form-check-label" for="apiCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">Repository Management</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="repoRead" />
-                                        <label class="form-check-label" for="repoRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="repoWrite" />
-                                        <label class="form-check-label" for="repoWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="repoCreate" />
-                                        <label class="form-check-label" for="repoCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="text-nowrap fw-medium text-heading">Payroll</td>
-                                  <td>
-                                    <div class="d-flex justify-content-end">
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="payrollRead" />
-                                        <label class="form-check-label" for="payrollRead"> Read </label>
-                                      </div>
-                                      <div class="form-check mb-0 me-4 me-lg-12">
-                                        <input class="form-check-input" type="checkbox" id="payrollWrite" />
-                                        <label class="form-check-label" for="payrollWrite"> Write </label>
-                                      </div>
-                                      <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="payrollCreate" />
-                                        <label class="form-check-label" for="payrollCreate"> Create </label>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                          <!-- Permission table -->
-                        </div>
-                        <div class="col-12 text-center">
-                          <button type="submit" class="btn btn-primary me-3">Submit</button>
-                          <button
-                            type="reset"
-                            class="btn btn-label-secondary"
-                            data-bs-dismiss="modal"
-                            aria-label="Close">
-                            Cancel
-                          </button>
-                        </div>
-                      </form>
-                      <!--/ Add role form -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--/ Add Role Modal -->
-
-              <!-- / Add Role Modal -->
             </div>
+          </div>
+          <h5 class="pb-4 border-bottom mb-4">Details</h5>
+          <div class="info-container">
+            <ul class="list-unstyled mb-6">
+              <li class="mb-2">
+                <span class="h6">Username:</span>
+                <span>@johndoe</span>
+              </li>
+              <li class="mb-2">
+                <span class="h6">Full Name:</span>
+                <span>John Doe</span>
+              </li>
+              <li class="mb-2">
+                <span class="h6">Email:</span>
+                <span>john.doe@example.com</span>
+              </li>
+              <li class="mb-2">
+                <span class="h6">Phone:</span>
+                <span>(123) 456-7890</span>
+              </li>
+              <li class="mb-2">
+                <span class="h6">Password:</span>
+                <span>********</span>
+              </li>
+            </ul>
+            <div class="d-flex justify-content-center">
+              <a href="javascript:;" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+            <div class="card">
+        <h5 class="card-header">Delete User Account</h5>
+        <div class="card-body">
+          <div class="mb-6 col-12 mb-0">
+            <div class="alert alert-warning">
+              <h5 class="alert-heading mb-1">Are you sure you want to delete your account?</h5>
+              <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+            </div>
+          </div>
+          <form id="formAccountDeactivation" onsubmit="return false">
+            <div class="form-check my-8 ms-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="accountActivation"
+                id="accountActivation" />
+              <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
+            </div>
+            <button type="submit" class="btn btn-danger deactivate-account" disabled>
+              Deactivate Account
+            </button>
+          </form>
+        </div>
+      </div>
+  </div>
+
+  <!-- Edit User Modal -->
+  <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="text-center mb-6">
+            <h4 class="mb-2">Edit User Information</h4>
+          </div>
+          <form class="row g-6" method="POST">
+            <div class="col-12">
+              <label class="form-label" for="modalEditUserName">Username</label>
+              <input
+                type="text"
+                id="modalEditUserName"
+                name="modalEditUserName"
+                class="form-control"
+                placeholder="johndoe007"
+                value="@johndoe" />
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="modalEditFullName">Full Name</label>
+              <input
+                type="text"
+                id="modalEditFullName"
+                name="modalEditFullName"
+                class="form-control"
+                placeholder="John Doe"
+                value="John Doe" />
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="modalEditUserEmail">Email</label>
+              <input
+                type="email"
+                id="modalEditUserEmail"
+                name="modalEditUserEmail"
+                class="form-control"
+                placeholder="example@domain.com"
+                value="john.doe@example.com" />
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="modalEditUserPhone">Phone</label>
+              <input
+                type="text"
+                id="modalEditUserPhone"
+                name="modalEditUserPhone"
+                class="form-control"
+                placeholder="202 555 0111"
+                value="(123) 456-7890" />
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="modalEditPassword">Password</label>
+              <input
+                type="password"
+                id="modalEditPassword"
+                name="modalEditPassword"
+                class="form-control"
+                placeholder="Enter new password" />
+            </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary me-3">Submit</button>
+              <button
+                type="reset"
+                class="btn btn-label-secondary"
+                data-bs-dismiss="modal"
+                aria-label="Close">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
             <!--/ Content -->
 
             <!-- Footer -->
@@ -1239,8 +990,12 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
+    <script src="./assets/vendor/libs/moment/moment.js"></script>
     <script src="./assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-
+    <script src="./assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+    <script src="./assets/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="./assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+    <script src="./assets/vendor/libs/select2/select2.js"></script>
     <script src="./assets/vendor/libs/@form-validation/popular.js"></script>
     <script src="./assets/vendor/libs/@form-validation/bootstrap5.js"></script>
     <script src="./assets/vendor/libs/@form-validation/auto-focus.js"></script>
@@ -1249,7 +1004,8 @@
     <script src="./assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="./assets/js/app-access-roles.js"></script>
-    <script src="./assets/js/modal-add-role.js"></script>
+    <script src="./assets/js/modal-edit-user.js"></script>
+    <script src="./assets/js/app-user-view.js"></script>
+    <script src="./assets/js/app-user-view-account.js"></script>
   </body>
 </html>

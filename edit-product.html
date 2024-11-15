@@ -814,6 +814,53 @@
                     </div>
                     <!-- /Product Information -->
                     <!-- Media -->
+                    
+                    <!-- /Media -->
+              
+
+                  </div>
+                  <!-- /Second column -->
+
+                  <!-- Second column -->
+                  <div class="col-12 col-lg-4">
+                    <!-- Organize Card -->
+                    <div class="card mb-6">
+                      <div class="card-header">
+                        <h5 class="card-title mb-0">more</h5>
+                      </div>
+                      <div class="card-body">   
+                                              <!-- Base Price -->
+                        <div class="mb-6">
+                          <label class="form-label" for="ecommerce-product-price">Price</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="ecommerce-product-price"
+                            placeholder="Price"
+                            name="productPrice"
+                            aria-label="Product price" />
+                        </div>                   
+                        <!-- Category -->
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="mb-6 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1" for="category-org">
+                              <span>Category</span>
+                            </label>
+                            <select id="category-org" class="select2 form-select" data-placeholder="Select Category">
+                              <option value="">Select Category</option>
+                              <option value="Household">Household</option>
+                              <option value="Management">Management</option>
+                              <option value="Electronics">Electronics</option>
+                              <option value="Office">Office</option>
+                              <option value="Automotive">Automotive</option>
+                            </select>
+                          </div>
+                          <a href="javascript:void(0);" class="fw-medium btn btn-icon btn-label-primary ms-4"
+                            ><i class="bx bx-plus bx-md"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </div>
                     <div class="card mb-6">
                       <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0 card-title">Product Image</h5>
@@ -831,69 +878,6 @@
                             <input name="file" type="file" />
                           </div>
                         </form>
-                      </div>
-                    </div>
-                    <!-- /Media -->
-              
-
-                  </div>
-                  <!-- /Second column -->
-
-                  <!-- Second column -->
-                  <div class="col-12 col-lg-4">
-                    <!-- Pricing Card -->
-                    <div class="card mb-6">
-                      <div class="card-header">
-                        <h5 class="card-title mb-0">Pricing</h5>
-                      </div>
-                      <div class="card-body">
-                        <!-- Base Price -->
-                        <div class="mb-6">
-                          <label class="form-label" for="ecommerce-product-price">Price</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="ecommerce-product-price"
-                            placeholder="Price"
-                            name="productPrice"
-                            aria-label="Product price" />
-                        </div>
-                    
-                        <!-- Instock switch -->
-                        <div class="d-flex justify-content-between align-items-center border-top pt-2">
-                          <span class="mb-0">In stock</span>
-                          <div class="w-25 d-flex justify-content-end">
-                            <div class="form-check form-switch me-n3">
-                              <input type="checkbox" class="form-check-input" checked />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /Pricing Card -->
-                    <!-- Organize Card -->
-                    <div class="card mb-6">
-                      <div class="card-header">
-                        <h5 class="card-title mb-0">Organize</h5>
-                      </div>
-                      <div class="card-body">                      
-                        <!-- Category -->
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="mb-6 col ecommerce-select2-dropdown">
-                            <label class="form-label mb-1" for="category-org">
-                              <span>Category</span>
-                            </label>
-                            <select id="category-org" class="select2 form-select" data-placeholder="Select Category">
-                              <option value="">Select Category</option>
-                              <option value="Household">Household</option>
-                              <option value="Management">Management</option>
-                              <option value="Electronics">Electronics</option>
-                              <option value="Office">Office</option>
-                              <option value="Automotive">Automotive</option>
-                            </select>
-                          </div>
-                         
-                        </div>
                       </div>
                     </div>
                     <!-- /Organize Card -->
@@ -985,5 +969,6 @@
 
     <!-- Page JS -->
     <script src="./assets/js/app-ecommerce-product-add.js"></script>
+    <!-- <script src="./assets/js/edit-product.js"></script> -->
   </body>
 </html>

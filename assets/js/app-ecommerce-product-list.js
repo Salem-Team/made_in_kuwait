@@ -4,6 +4,7 @@
 
 'use strict';
 
+
 // Datatable (jquery)
 $(function () {
   let borderColor, bodyBg, headingColor;
@@ -20,12 +21,7 @@ $(function () {
 
   // Variable declaration for table
   var dt_product_table = $('.datatables-products'),
-    productAdd = 'app-ecommerce-product-add.html',
-    statusObj = {
-      1: { title: 'Scheduled', class: 'bg-label-warning' },
-      2: { title: 'Publish', class: 'bg-label-success' },
-      3: { title: 'Inactive', class: 'bg-label-danger' }
-    },
+      productAdd = 'add-product.html',
     categoryObj = {
       0: { title: 'Household' },
       1: { title: 'Office' },
@@ -33,26 +29,41 @@ $(function () {
       3: { title: 'Shoes' },
       4: { title: 'Accessories' },
       5: { title: 'Game' }
-    },
-    stockObj = {
-      0: { title: 'Out_of_Stock' },
-      1: { title: 'In_Stock' }
-    },
-    stockFilterValObj = {
-      0: { title: 'Out of Stock' },
-      1: { title: 'In Stock' }
-    };
+    }
+ 
 
   // E-commerce Products datatable
 
   if (dt_product_table.length) {
     var dt_products = dt_product_table.DataTable({
-      ajax: assetsPath + 'json/ecommerce-product-list.json', // JSON file to add data
+    ajax: {
+  url: 'https://localhost:7130/api/Product/GetAllProductsAsync',
+  type: 'GET',
+  dataSrc: function (json) {
+    // التحقق من أن البيانات تحتوي على مصفوفة
+    if (Array.isArray(json.data)) {
+      return json.data.map(item => ({
+        CategoryId: item.categoryId || 0, // استخدم categoryId الموجود أو قيمة افتراضية
+        Name: item.name || 'Unknown', // تعيين الاسم الافتراضي إذا كان غير موجود
+        category: item.category?.id || 0, // استخدم id الخاص بـ category إذا وجد
+        price: item.price ? `$${item.price}` : '$0', // أضف علامة الدولار للسعر
+        DateTime: new Date(item.dateTime).toUTCString(), // تحويل التاريخ إلى صيغة UTC
+        MediaUrls: item.mediaUrls?.[0]?.split('\\').pop() || 'default.png', // أخذ الصورة الأولى فقط أو تعيين صورة افتراضية
+        Description: item.description || 'No description available' // تعيين وصف افتراضي
+      }));
+    } else {
+      console.error("Unexpected API response format:", json);
+      return [];
+    }
+  }
+},
+
+
+ // JSON file to add data
  columns: [
   { data: 'CategoryId' },
   { data: 'Name' },
   { data: 'category' },
-  { data: 'stock' },
   { data: 'price' },
   { data: 'DateTime' },
   { data: '' } 
@@ -88,7 +99,7 @@ if ($MediaUrls && $MediaUrls.length > 0) {
     assetsPath +
     'img/ecommerce-images/' +
     $MediaUrls[0] + // استخدام أول عنصر فقط من المصفوفة
-    '" alt="Product-' +
+ 
     $CategoryId +
     '" class="rounded">';
 }else {
@@ -149,44 +160,10 @@ if ($MediaUrls && $MediaUrls.length > 0) {
             );
           }
         },
-        {
-          // Stock
-          targets: 3,
-          orderable: false,
-          responsivePriority: 3,
-          render: function (data, type, full, meta) {
-            var $stock = full['stock'];
-            var stockSwitchObj = {
-              Out_of_Stock:
-                '<label class="switch switch-primary switch-sm">' +
-                '<input type="checkbox" class="switch-input" id="switch">' +
-                '<span class="switch-toggle-slider">' +
-                '<span class="switch-off">' +
-                '</span>' +
-                '</span>' +
-                '</label>',
-              In_Stock:
-                '<label class="switch switch-primary switch-sm">' +
-                '<input type="checkbox" class="switch-input" checked="">' +
-                '<span class="switch-toggle-slider">' +
-                '<span class="switch-on">' +
-                '</span>' +
-                '</span>' +
-                '</label>'
-            };
-            return (
-              "<span class='text-truncate'>" +
-              stockSwitchObj[stockObj[$stock].title] +
-              '<span class="d-none">' +
-              stockObj[$stock].title +
-              '</span>' +
-              '</span>'
-            );
-          }
-        },
+       
         {
           // price
-          targets: 4,
+          targets: 3,
           render: function (data, type, full, meta) {
             var $price = full['price'];
 
@@ -195,7 +172,7 @@ if ($MediaUrls && $MediaUrls.length > 0) {
         },
         {
           // DateTime
-          targets: 5,
+          targets: 4,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
             var $DateTime = full['DateTime'];
@@ -217,11 +194,21 @@ if ($MediaUrls && $MediaUrls.length > 0) {
                 '<button class="btn btn-icon delete-record"><i class="bx bx-trash bx-md"></i></button>' +
                 '</div>'
               );
-            }
+            },
+            
             }
 
       ],
       order: [2, 'asc'], //set any columns order asc/desc
+            dom:
+        '<"card-header d-flex border-top rounded-0 flex-wrap py-0 flex-column flex-md-row align-items-start"' +
+        '<"me-5 ms-n4 pe-5 mb-n6 mb-md-0"f>' +
+        '<"d-flex justify-content-start justify-content-md-end align-items-baseline"<"dt-action-buttons d-flex flex-column align-items-start align-items-sm-center justify-content-sm-center pt-0 gap-sm-4 gap-sm-0 flex-sm-row"lB>>' +
+        '>t' +
+        '<"row"' +
+        '<"col-sm-12 col-md-6"i>' +
+        '<"col-sm-12 col-md-6"p>' +
+        '>',
    
       language: {
         search: '',
@@ -231,7 +218,16 @@ if ($MediaUrls && $MediaUrls.length > 0) {
           previous: '<i class="bx bx-chevron-left bx-18px"></i>'
         }
       },
-
+buttons:[
+          {
+         text: '<i class="bx bx-plus me-0 me-sm-1 bx-xs"></i><span class="d-none d-sm-inline-block">Add Product</span>',
+    className: 'add-new btn btn-primary',
+       
+          action: function () {
+            window.location.href = productAdd;
+          }
+        }
+],
       // For responsive popup
       responsive: {
         details: {
@@ -265,6 +261,7 @@ if ($MediaUrls && $MediaUrls.length > 0) {
           }
         }
       },
+
   
     });
     $('.dataTables_length').addClass('mx-n2');
@@ -283,3 +280,11 @@ if ($MediaUrls && $MediaUrls.length > 0) {
     $('.dataTables_length .form-select').removeClass('form-select-sm');
   }, 300);
 });
+
+
+
+
+
+
+
+
